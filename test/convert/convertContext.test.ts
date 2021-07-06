@@ -180,8 +180,14 @@ describe('Convert Transaction Constructs', () => {
             [component.xml]: {
               parent: component,
               children: {
-                [nonDecomposed.CHILD_1_NAME]: nonDecomposed.CHILD_1_XML,
-                [nonDecomposed.CHILD_2_NAME]: nonDecomposed.CHILD_2_XML,
+                [nonDecomposed.CHILD_1_NAME]: {
+                  source: nonDecomposed.CHILD_1_XML,
+                  childType: component.type,
+                },
+                [nonDecomposed.CHILD_2_NAME]: {
+                  source: nonDecomposed.CHILD_2_XML,
+                  childType: component.type,
+                },
               },
             },
           };
@@ -207,8 +213,14 @@ describe('Convert Transaction Constructs', () => {
             [component.xml]: {
               parent: component,
               children: {
-                [nonDecomposed.CHILD_1_NAME]: nonDecomposed.CHILD_1_XML,
-                [nonDecomposed.CHILD_2_NAME]: nonDecomposed.CHILD_2_XML,
+                [nonDecomposed.CHILD_1_NAME]: {
+                  source: nonDecomposed.CHILD_1_XML,
+                  childType: component.type,
+                },
+                [nonDecomposed.CHILD_2_NAME]: {
+                  source: nonDecomposed.CHILD_2_XML,
+                  childType: component.type,
+                },
               },
             },
           };
@@ -238,9 +250,18 @@ describe('Convert Transaction Constructs', () => {
             [component.xml]: {
               parent: component,
               children: {
-                [nonDecomposed.CHILD_1_NAME]: nonDecomposed.CHILD_1_XML,
-                [nonDecomposed.CHILD_2_NAME]: nonDecomposed.CHILD_2_XML,
-                [nonDecomposed.CHILD_3_NAME]: nonDecomposed.CHILD_3_XML,
+                [nonDecomposed.CHILD_1_NAME]: {
+                  source: nonDecomposed.CHILD_1_XML,
+                  childType: component.type,
+                },
+                [nonDecomposed.CHILD_2_NAME]: {
+                  source: nonDecomposed.CHILD_2_XML,
+                  childType: component.type,
+                },
+                [nonDecomposed.CHILD_3_NAME]: {
+                  source: nonDecomposed.CHILD_3_XML,
+                  childType: component.type,
+                },
               },
             },
           };
@@ -248,7 +269,10 @@ describe('Convert Transaction Constructs', () => {
             [component.xml]: {
               parent: component,
               children: {
-                [nonDecomposed.UNCLAIMED_CHILD_NAME]: nonDecomposed.UNCLAIMED_CHILD_XML,
+                [nonDecomposed.UNCLAIMED_CHILD_NAME]: {
+                  source: nonDecomposed.UNCLAIMED_CHILD_XML,
+                  childType: component.type,
+                },
               },
             },
           };
@@ -277,8 +301,14 @@ describe('Convert Transaction Constructs', () => {
             [component.xml]: {
               parent: component,
               children: {
-                [nonDecomposed.CHILD_1_NAME]: nonDecomposed.CHILD_1_XML,
-                [nonDecomposed.CHILD_2_NAME]: nonDecomposed.CHILD_2_XML,
+                [nonDecomposed.CHILD_1_NAME]: {
+                  source: nonDecomposed.CHILD_1_XML,
+                  childType: component.type,
+                },
+                [nonDecomposed.CHILD_2_NAME]: {
+                  source: nonDecomposed.CHILD_2_XML,
+                  childType: component.type,
+                },
               },
             },
           };
@@ -286,7 +316,10 @@ describe('Convert Transaction Constructs', () => {
             [component.xml]: {
               parent: component,
               children: {
-                [nonDecomposed.CHILD_3_NAME]: nonDecomposed.CHILD_3_XML,
+                [nonDecomposed.CHILD_3_NAME]: {
+                  source: nonDecomposed.CHILD_3_XML,
+                  childType: component.type,
+                },
               },
             },
           };
