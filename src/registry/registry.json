@@ -1990,28 +1990,27 @@
       "suffix": "bot",
       "directoryName": "bots",
       "inFolder": false,
-      "strictDirectoryName": false,
+      "strictDirectoryName": true,
       "children": {
         "types": {
           "botversion": {
             "id": "botversion",
             "name": "BotVersion",
-            "uniqueIdElement": "fullName",
             "directoryName": "botVersions",
             "suffix": "botVersion"
           }
         },
-        "suffixes": {
-          "botVersion": "botversion"
-        },
         "directories": {
           "botVersions": "botversion"
+        },
+        "suffixes": {
+          "botVersion": "botversion"
         }
       },
       "strategies": {
-        "adapter": "default",
-        "transformer": "nonDecomposed",
-        "recomposition": "startEmpty"
+        "adapter": "decomposed",
+        "transformer": "decomposed",
+        "decomposition": "folderPerType"
       }
     },
     "animationrule": {
@@ -2640,6 +2639,7 @@
     "prompt": ["prompt"],
     "mlDomain": ["mldomain"],
     "bot": ["bot"],
+    "botVersion": ["botversion"],
     "animationRule": ["animationrule"],
     "deployment": ["recordactiondeployment"],
     "EmbeddedServiceFlowConfig": ["embeddedserviceflowconfig"],
@@ -2696,6 +2696,7 @@
     "documents": "document",
     "waveTemplates": "wavetemplatebundle",
     "objects": "customobject",
+    "bots": "bot",
     "objectTranslations": "customobjecttranslation",
     "staticresources": "staticresource",
     "sites": "customsite",
