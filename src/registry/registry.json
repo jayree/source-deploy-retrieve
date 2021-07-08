@@ -2453,6 +2453,38 @@
       "inFolder": false,
       "strictDirectoryName": false,
       "folderContentType": "emailtemplate"
+    },
+    "datamappingschema": {
+      "id": "datamappingschema",
+      "name": "DataMappingSchema",
+      "suffix": "dataMappingSchema",
+      "directoryName": "dataMappingSchema",
+      "inFolder": false,
+      "strictDirectoryName": false
+    },
+    "datamapping": {
+      "id": "datamapping",
+      "name": "DataMapping",
+      "suffix": "dataMapping",
+      "directoryName": "dataMapping",
+      "inFolder": false,
+      "strictDirectoryName": false
+    },
+    "federationdatamappingusage": {
+      "id": "federationdatamappingusage",
+      "name": "FederationDataMappingUsage",
+      "suffix": "federationDataMappingUsage",
+      "directoryName": "federationDataMappingUsage",
+      "inFolder": false,
+      "strictDirectoryName": false
+    },
+    "connectedsystem": {
+      "id": "connectedsystem",
+      "name": "ConnectedSystem",
+      "suffix": "connectedSystem",
+      "directoryName": "ConnectedSystem",
+      "inFolder": false,
+      "strictDirectoryName": false
     }
   },
   "suffixes": {
@@ -2687,7 +2719,11 @@
     "reportFolder": ["reportfolder"],
     "dashboardFolder": ["dashboardfolder"],
     "documentFolder": ["documentfolder"],
-    "emailFolder": ["emailfolder"]
+    "emailFolder": ["emailfolder"],
+    "dataMappingSchema": ["datamappingschema"],
+    "dataMapping": ["datamapping"],
+    "federationDataMappingUsage": ["federationdatamappingusage"],
+    "connectedSystem": ["connectedsystem"]
   },
   "strictDirectoryNames": {
     "experiences": "experiencebundle",
