@@ -751,55 +751,48 @@
       "suffix": "workflow",
       "directoryName": "workflows",
       "inFolder": false,
-      "strictDirectoryName": false,
+      "strictDirectoryName": true,
       "children": {
         "types": {
           "workflowfieldupdate": {
             "id": "workflowfieldupdate",
             "name": "WorkflowFieldUpdate",
-            "uniqueIdElement": "fullName",
             "directoryName": "fieldUpdates",
             "suffix": "fieldUpdate"
           },
           "workflowknowledgepublish": {
             "id": "workflowknowledgepublish",
             "name": "WorkflowKnowledgePublish",
-            "uniqueIdElement": "fullName",
             "directoryName": "knowledgePublishes",
             "suffix": "knowledgePublish"
           },
           "workflowtask": {
             "id": "workflowtask",
             "name": "WorkflowTask",
-            "uniqueIdElement": "fullName",
             "directoryName": "tasks",
             "suffix": "task"
           },
           "workflowalert": {
             "id": "workflowalert",
             "name": "WorkflowAlert",
-            "uniqueIdElement": "fullName",
             "directoryName": "alerts",
             "suffix": "alert"
           },
           "workflowsend": {
             "id": "workflowsend",
             "name": "WorkflowSend",
-            "uniqueIdElement": "fullName",
             "directoryName": "send",
             "suffix": "send"
           },
           "workflowoutboundmessage": {
             "id": "workflowoutboundmessage",
             "name": "WorkflowOutboundMessage",
-            "uniqueIdElement": "fullName",
             "directoryName": "outboundMessages",
             "suffix": "outboundMessage"
           },
           "workflowrule": {
             "id": "workflowrule",
             "name": "WorkflowRule",
-            "uniqueIdElement": "fullName",
             "directoryName": "rules",
             "suffix": "rule"
           }
@@ -824,9 +817,9 @@
         }
       },
       "strategies": {
-        "adapter": "default",
-        "transformer": "nonDecomposed",
-        "recomposition": "startEmpty"
+        "adapter": "decomposed",
+        "transformer": "decomposed",
+        "decomposition": "folderPerType"
       }
     },
     "assignmentrules": {
@@ -1362,34 +1355,30 @@
       "suffix": "sharingRules",
       "directoryName": "sharingRules",
       "inFolder": false,
-      "strictDirectoryName": false,
+      "strictDirectoryName": true,
       "children": {
         "types": {
           "sharingownerrule": {
             "id": "sharingownerrule",
             "name": "SharingOwnerRule",
-            "uniqueIdElement": "fullName",
             "directoryName": "sharingOwnerRules",
             "suffix": "sharingOwnerRule"
           },
           "sharingcriteriarule": {
             "id": "sharingcriteriarule",
             "name": "SharingCriteriaRule",
-            "uniqueIdElement": "fullName",
             "directoryName": "sharingCriteriaRules",
             "suffix": "sharingCriteriaRule"
           },
           "sharingguestrule": {
             "id": "sharingguestrule",
             "name": "SharingGuestRule",
-            "uniqueIdElement": "fullName",
             "directoryName": "sharingGuestRules",
             "suffix": "sharingGuestRule"
           },
           "sharingterritoryrule": {
             "id": "sharingterritoryrule",
             "name": "SharingTerritoryRule",
-            "uniqueIdElement": "fullName",
             "directoryName": "sharingTerritoryRules",
             "suffix": "sharingTerritoryRule"
           }
@@ -1408,9 +1397,9 @@
         }
       },
       "strategies": {
-        "adapter": "default",
-        "transformer": "nonDecomposed",
-        "recomposition": "startEmpty"
+        "adapter": "decomposed",
+        "transformer": "decomposed",
+        "decomposition": "folderPerType"
       }
     },
     "sharingset": {
@@ -2710,7 +2699,9 @@
     "objectTranslations": "customobjecttranslation",
     "staticresources": "staticresource",
     "sites": "customsite",
-    "emailservices": "emailservicesfunction"
+    "emailservices": "emailservicesfunction",
+    "workflows": "workflow",
+    "sharingRules": "sharingrules"
   },
   "childTypes": {
     "customlabel": "customlabels",
@@ -2724,7 +2715,9 @@
     "sharingreason": "customobject",
     "listview": "customobject",
     "fieldset": "customobject",
+    "formsection": "form",
     "workflowfieldupdate": "workflow",
+    "workflowknowledgepublish": "workflow",
     "workflowtask": "workflow",
     "workflowalert": "workflow",
     "workflowsend": "workflow",
@@ -2733,10 +2726,16 @@
     "assignmentrule": "assignmentrules",
     "autoresponserule": "autoresponserules",
     "escalationrule": "escalationrules",
+    "fieldtranslation": "customobjecttranslation",
     "matchingrule": "matchingrules",
     "sharingownerrule": "sharingrules",
     "sharingcriteriarule": "sharingrules",
-    "botversion": "bot"
+    "sharingguestrule": "sharingrules",
+    "sharingterritoryrule": "sharingrules",
+    "managedtopic": "managedtopics",
+    "botversion": "bot",
+    "workskillroutingattribute": "workskillrouting",
+    "mktdatatranfield": "mktdatatranobject"
   },
   "apiVersion": "52.0"
 }
