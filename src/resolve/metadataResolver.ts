@@ -156,7 +156,22 @@ export class MetadataResolver {
     if (!resolvedType) {
       const parsedMetaXml = parseMetadataXml(fsPath);
       if (parsedMetaXml) {
-        resolvedType = this.registry.getTypeBySuffix(parsedMetaXml.suffix);
+        const types = this.registry.getTypesBySuffix(parsedMetaXml.suffix);
+        if (types.length === 1) {
+          [resolvedType] = types;
+        } else {
+          for (const type of types) {
+            if (pathParts.has(type.directoryName)) {
+              // types with folders only have folder components living at the top level.
+              // if the fsPath is a folder component, let a future strategy deal with it
+              // const isFolderType = this.getTypeFromName(typeId).inFolder;
+              if (!type.inFolder || parentName(fsPath) !== type.directoryName) {
+                resolvedType = type;
+              }
+              break;
+            }
+          }
+        }
       }
     }
 
@@ -173,7 +188,22 @@ export class MetadataResolver {
 
     // attempt 3 - try treating the file extension name as a suffix
     if (!resolvedType) {
-      resolvedType = this.registry.getTypeBySuffix(extName(fsPath));
+      const types = this.registry.getTypesBySuffix(extName(fsPath));
+      if (types.length === 1) {
+        [resolvedType] = types;
+      } else {
+        for (const type of this.registry.getTypesBySuffix(extName(fsPath))) {
+          if (pathParts.has(type.directoryName)) {
+            // types with folders only have folder components living at the top level.
+            // if the fsPath is a folder component, let a future strategy deal with it
+            // const isFolderType = this.getTypeFromName(typeId).inFolder;
+            if (!type.inFolder || parentName(fsPath) !== type.directoryName) {
+              resolvedType = type;
+            }
+            break;
+          }
+        }
+      }
     }
 
     return resolvedType;
@@ -218,7 +248,7 @@ export class MetadataResolver {
    * @param fsPath File path of a potential content metadata file
    */
   private parseAsContentMetadataXml(fsPath: string): boolean {
-    return !!this.registry.getTypeBySuffix(extName(fsPath));
+    return !!this.registry.getTypesBySuffix(extName(fsPath))?.length;
   }
 
   /**

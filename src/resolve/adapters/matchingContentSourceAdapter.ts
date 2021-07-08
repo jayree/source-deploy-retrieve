@@ -9,6 +9,7 @@ import { ExpectedSourceFilesError, UnexpectedForceIgnore } from '../../errors';
 import { SourcePath, META_XML_SUFFIX } from '../../common';
 import { extName } from '../../utils/path';
 import { SourceComponent } from '../sourceComponent';
+import { MetadataType } from '../../registry/types';
 
 /**
  * Handles types with a single content file with a matching file extension.
@@ -57,6 +58,8 @@ export class MatchingContentSourceAdapter extends BaseSourceAdapter {
   }
 
   private extensionMatchesType(fsPath: SourcePath): boolean {
-    return this.registry.getTypeBySuffix(extName(fsPath)) === this.type;
+    return this.registry
+      .getTypesBySuffix(extName(fsPath))
+      .some((type: MetadataType) => type.id === this.type.id);
   }
 }

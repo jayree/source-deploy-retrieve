@@ -56,12 +56,12 @@ describe('RegistryAccess', () => {
 
   describe('getTypeBySuffix', () => {
     it('should get known type by suffix', () => {
-      const type = mockRegistryData.types.matchingcontentfile;
-      expect(mockRegistry.getTypeBySuffix(type.suffix)).to.deep.equal(type);
+      const type = [mockRegistryData.types.matchingcontentfile];
+      expect(mockRegistry.getTypesBySuffix(type[0].suffix)).to.have.deep.members(type);
     });
 
     it('should return undefined for unknown suffix', () => {
-      expect(mockRegistry.getTypeBySuffix('asdf')).to.be.undefined;
+      expect(mockRegistry.getTypesBySuffix('asdf')).to.be.empty;
     });
   });
 

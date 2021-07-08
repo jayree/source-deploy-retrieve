@@ -46,11 +46,17 @@ export class RegistryAccess {
    * @param suffix - File suffix of the metadata type
    * @returns The corresponding metadata type object
    */
-  public getTypeBySuffix(suffix: string): MetadataType | undefined {
+  public getTypesBySuffix(suffix: string): MetadataType[] | [] {
     if (this.registry.suffixes[suffix]) {
-      const typeId = this.registry.suffixes[suffix];
-      return this.getTypeByName(typeId);
+      let typeIds;
+      if (!Array.isArray(this.registry.suffixes[suffix])) {
+        typeIds = [this.registry.suffixes[suffix]];
+      } else {
+        typeIds = this.registry.suffixes[suffix];
+      }
+      return (typeIds as []).map((typeId: string) => this.getTypeByName(typeId));
     }
+    return [];
   }
 
   /**

@@ -104,8 +104,8 @@ interface TypeIndex {
 /**
  * Mapping of metadata type file suffixes -> type ids.
  */
-interface SuffixIndex {
-  [suffix: string]: string;
+export interface SuffixIndex {
+  [suffix: string]: string | string[];
 }
 
 /**
