@@ -18,7 +18,7 @@ import { DecompositionStrategy } from '../../registry';
 export class DecomposedMetadataTransformer extends BaseMetadataTransformer {
   public async toMetadataFormat(component: SourceComponent): Promise<WriteInfo[]> {
     if (component.parent) {
-      const { fullName: parentName } = component.parent;
+      const parentName = component.parent.fullName + '#' + component.parent.type.name;
       this.context.recomposition.setState((state) => {
         if (state[parentName]) {
           state[parentName].children.add(component);
@@ -30,7 +30,7 @@ export class DecomposedMetadataTransformer extends BaseMetadataTransformer {
         }
       });
     } else {
-      const { fullName } = component;
+      const fullName = component.fullName + '#' + component.type.name;
       this.context.recomposition.setState((state) => {
         if (state[fullName]) {
           for (const child of component.getChildren()) {
