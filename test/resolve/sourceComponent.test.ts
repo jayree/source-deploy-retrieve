@@ -22,7 +22,7 @@ import {
   VIRTUAL_DIR,
   COMPONENT_1_XML_PATH,
   CHILD_2_NAME,
-  MATCHING_RULES_COMPONENT,
+  MANAGED_TOPICS_COMPONENT,
 } from '../mock/registry/type-constants/nonDecomposedConstants';
 import { createSandbox } from 'sinon';
 
@@ -232,7 +232,7 @@ describe('SourceComponent', () => {
 
     // https://github.com/forcedotcom/salesforcedx-vscode/issues/3210
     it('should return empty children for types that do not have uniqueIdElement but xmlPathToChildren returns elements', () => {
-      expect(MATCHING_RULES_COMPONENT.getChildren()).to.deep.equal([]);
+      expect(MANAGED_TOPICS_COMPONENT.getChildren()).to.deep.equal([]);
     });
   });
 });

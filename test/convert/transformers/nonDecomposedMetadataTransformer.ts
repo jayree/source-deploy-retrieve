@@ -29,7 +29,7 @@ describe('NonDecomposedMetadataTransformer', () => {
       expect(await transformer.toMetadataFormat(child1)).to.deep.equal([]);
       expect(await transformer.toMetadataFormat(child2)).to.deep.equal([]);
       expect(context.recomposition.state).to.deep.equal({
-        [component.fullName]: {
+        [component.fullName + '#' + component.type.name]: {
           component,
           children: new ComponentSet([child1, child2], mockRegistry),
         },

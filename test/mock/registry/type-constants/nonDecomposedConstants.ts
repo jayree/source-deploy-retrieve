@@ -71,36 +71,25 @@ export const FULL_XML_CONTENT = {
   },
 };
 
-export const MATCHING_RULES_TYPE = registry.types.matchingrules;
-// NOTE: directory name uses the string literal rather than getting from MATCHING_RULES_TYPE
+export const MANAGED_TOPICS_TYPE = registry.types.managedtopics;
+// NOTE: directory name uses the string literal rather than getting from MANAGED_TOPICS_TYPE
 // so it explictly shows that this matches the xml field
-export const MATCHING_RULES_TYPE_DIRECTORY_NAME = 'matchingRules';
-export const MATCHING_RULES_XML_NAME = 'Account.matchingRule-meta.xml';
-export const MATCHING_RULES_COMPONENT_DIR = join(DEFAULT_DIR, MATCHING_RULES_TYPE_DIRECTORY_NAME);
-export const MATCHING_RULES_COMPONENT_XML_PATH = join(
-  MATCHING_RULES_COMPONENT_DIR,
-  MATCHING_RULES_XML_NAME
+export const MANAGED_TOPICS_TYPE_DIRECTORY_NAME = 'managedTopics';
+export const MANAGED_TOPICS_XML_NAME = 'SiteName.managedTopic-meta.xml';
+export const MANAGED_TOPICS_COMPONENT_DIR = join(DEFAULT_DIR, MANAGED_TOPICS_TYPE_DIRECTORY_NAME);
+export const MANAGED_TOPICS_COMPONENT_XML_PATH = join(
+  MANAGED_TOPICS_COMPONENT_DIR,
+  MANAGED_TOPICS_XML_NAME
 );
-export const MATCHING_RULES_COMPONENT_XML = {
-  MatchingRules: {
+export const MANAGED_TOPICS_COMPONENT_XML = {
+  ManagedTopics: {
     '@_xmlns': 'http://soap.sforce.com/2006/04/metadata',
-    matchingRules: {
-      fullName: 'My_Account_Matching_Rule',
-      booleanFilter: '1 AND 2',
-      label: 'My Account Matching Rule',
-      matchingRuleItems: [
-        {
-          blankValueBehavior: 'NullNotAllowed',
-          fieldName: 'Name',
-          matchingMethod: 'Exact',
-        },
-        {
-          blankValueBehavior: 'NullNotAllowed',
-          fieldName: 'BillingCity',
-          matchingMethod: 'Exact',
-        },
-      ],
-      ruleStatus: 'Active',
+    ManagedTopic: {
+      name: 'Running',
+      managedTopicType: 'Navigational',
+      topicDescription: 'Training advice',
+      parentName: '',
+      position: 0,
     },
   },
 };
@@ -122,11 +111,11 @@ export const VIRTUAL_DIR: VirtualDirectory[] = [
     ],
   },
   {
-    dirPath: MATCHING_RULES_COMPONENT_DIR,
+    dirPath: MANAGED_TOPICS_COMPONENT_DIR,
     children: [
       {
-        name: MATCHING_RULES_XML_NAME,
-        data: Buffer.from(new JsToXml(MATCHING_RULES_COMPONENT_XML).read().toString()),
+        name: MANAGED_TOPICS_XML_NAME,
+        data: Buffer.from(new JsToXml(MANAGED_TOPICS_COMPONENT_XML).read().toString()),
       },
     ],
   },
@@ -144,11 +133,11 @@ export const COMPONENT_2 = new SourceComponent(
   TREE
 );
 
-export const MATCHING_RULES_COMPONENT = new SourceComponent(
+export const MANAGED_TOPICS_COMPONENT = new SourceComponent(
   {
-    name: MATCHING_RULES_TYPE.name,
-    type: MATCHING_RULES_TYPE,
-    xml: MATCHING_RULES_COMPONENT_XML_PATH,
+    name: MANAGED_TOPICS_TYPE.name,
+    type: MANAGED_TOPICS_TYPE,
+    xml: MANAGED_TOPICS_COMPONENT_XML_PATH,
   },
   TREE
 );
