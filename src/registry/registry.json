@@ -2000,7 +2000,7 @@
       "strategies": {
         "adapter": "decomposed",
         "transformer": "decomposed",
-        "decomposition": "folderPerType"
+        "decomposition": "topLevel"
       }
     },
     "animationrule": {
