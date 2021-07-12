@@ -44,6 +44,7 @@ export class RegistryTestUtil {
       getAdapterStub.withArgs(entry.type).returns({
         getComponent: (path: SourcePath) => componentMap[path],
         allowMetadataWithContent: () => entry.allowContent,
+        allowMetadataFolder: (path: SourcePath) => (path ? true : false),
       });
     }
   }

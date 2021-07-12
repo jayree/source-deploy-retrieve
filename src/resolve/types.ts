@@ -57,4 +57,11 @@ export interface SourceAdapter {
    * Whether the adapter allows content-only metadata definitions.
    */
   allowMetadataWithContent(): boolean;
+
+  /**
+   * If the path given to `allowMetadataFolder` is a folder, ignore the folder if rootMetadata is ignored.
+   *
+   * @param path File path of a metadata component
+   */
+  allowMetadataFolder(path: SourcePath): boolean;
 }
