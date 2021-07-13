@@ -9,7 +9,7 @@ import { parseMetadataXml } from '../../utils';
 import { UnexpectedForceIgnore } from '../../errors';
 import { parentName } from '../../utils/path';
 import { ForceIgnore } from '../forceIgnore';
-import { dirname, basename, sep, join } from 'path';
+import { dirname, basename, sep } from 'path';
 import { NodeFSTreeContainer, TreeContainer } from '../treeContainers';
 import { SourceComponent } from '../sourceComponent';
 import { SourcePath } from '../../common';
@@ -76,29 +76,6 @@ export abstract class BaseSourceAdapter implements SourceAdapter {
    */
   public allowMetadataWithContent(): boolean {
     return this.metadataWithContent;
-  }
-
-  /**
-   * If the path given to `allowMetadataFolder` is a folder, ignore the folder if rootMetadata is ignored.
-   *
-   * @param path File path of a metadata component
-   */
-  public allowMetadataFolder(path: SourcePath): boolean {
-    let rootMetadata = this.parseAsRootMetadataXml(path);
-    if (!rootMetadata) {
-      const rootMetadataPath = this.getRootMetadataXmlPath(path);
-      if (rootMetadataPath) {
-        rootMetadata = parseMetadataXml(rootMetadataPath);
-      }
-    }
-    if (
-      rootMetadata &&
-      this.forceIgnore.denies(rootMetadata.path) &&
-      join(dirname(rootMetadata.path), rootMetadata.fullName) === path
-    ) {
-      return false;
-    }
-    return true;
   }
 
   /**

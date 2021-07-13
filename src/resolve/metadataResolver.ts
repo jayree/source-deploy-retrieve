@@ -78,11 +78,9 @@ export class MetadataResolver {
       if (this.tree.isDirectory(fsPath)) {
         if (this.resolveDirectoryAsComponent(fsPath)) {
           const component = this.resolveComponent(fsPath, true);
-          if (component) {
-            if (!inclusiveFilter || inclusiveFilter.has(component)) {
-              components.push(component);
-              ignore.add(component.xml);
-            }
+          if (!inclusiveFilter || inclusiveFilter.has(component)) {
+            components.push(component);
+            ignore.add(component.xml);
           }
         } else {
           dirQueue.push(fsPath);
@@ -129,10 +127,9 @@ export class MetadataResolver {
       // source path or allowed content-only path, otherwise the adapter
       // knows how to handle it
       const shouldResolve =
-        (isResolvingSource ||
-          !this.parseAsContentMetadataXml(fsPath) ||
-          !adapter.allowMetadataWithContent()) &&
-        adapter.allowMetadataFolder(fsPath);
+        isResolvingSource ||
+        !this.parseAsContentMetadataXml(fsPath) ||
+        !adapter.allowMetadataWithContent();
       return shouldResolve ? adapter.getComponent(fsPath, isResolvingSource) : undefined;
     }
     throw new TypeInferenceError('error_could_not_infer_type', fsPath);
