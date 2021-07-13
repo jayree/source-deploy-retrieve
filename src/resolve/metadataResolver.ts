@@ -130,6 +130,7 @@ export class MetadataResolver {
       // knows how to handle it
       const shouldResolve =
         isResolvingSource ||
+        this.parseAsRootMetadataXml(fsPath) ||
         !this.parseAsContentMetadataXml(fsPath) ||
         !adapter.allowMetadataWithContent();
       return shouldResolve ? adapter.getComponent(fsPath, isResolvingSource) : undefined;
@@ -251,6 +252,15 @@ export class MetadataResolver {
    */
   private parseAsContentMetadataXml(fsPath: string): boolean {
     return !!this.registry.getTypesBySuffix(extName(fsPath))?.length;
+  }
+
+  /**
+   * Any metadata xml file (-meta.xml) is potentially a root metadata file.
+   *
+   * @param fsPath File path of a potential metadata root xml file
+   */
+  private parseAsRootMetadataXml(fsPath: string): boolean {
+    return !!parseMetadataXml(fsPath);
   }
 
   /**

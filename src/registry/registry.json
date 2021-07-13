@@ -1833,10 +1833,10 @@
     "emailservicesfunction": {
       "id": "emailservicesfunction",
       "name": "EmailServicesFunction",
-      "suffix": null,
+      "suffix": "xml",
       "directoryName": "emailservices",
       "inFolder": false,
-      "strictDirectoryName": true
+      "strictDirectoryName": false
     },
     "integrationhubsettingstype": {
       "id": "integrationhubsettingstype",
@@ -2713,7 +2713,8 @@
     "dataMappingSchema": ["datamappingschema"],
     "dataMapping": ["datamapping"],
     "federationDataMappingUsage": ["federationdatamappingusage"],
-    "connectedSystem": ["connectedsystem"]
+    "connectedSystem": ["connectedsystem"],
+    "xml": ["emailservicesfunction"]
   },
   "strictDirectoryNames": {
     "experiences": "experiencebundle",
@@ -2726,7 +2727,6 @@
     "objectTranslations": "customobjecttranslation",
     "staticresources": "staticresource",
     "sites": "customsite",
-    "emailservices": "emailservicesfunction",
     "workflows": "workflow",
     "sharingRules": "sharingrules"
   },
