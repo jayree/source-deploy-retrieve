@@ -78,11 +78,9 @@ export class MetadataResolver {
       if (this.tree.isDirectory(fsPath)) {
         if (this.resolveDirectoryAsComponent(fsPath)) {
           const component = this.resolveComponent(fsPath, true);
-          if (component) {
-            if (!inclusiveFilter || inclusiveFilter.has(component)) {
-              components.push(component);
-              ignore.add(component.xml);
-            }
+          if (component && (!inclusiveFilter || inclusiveFilter.has(component))) {
+            components.push(component);
+            ignore.add(component.xml);
           }
         } else {
           dirQueue.push(fsPath);
@@ -119,7 +117,7 @@ export class MetadataResolver {
 
   private resolveComponent(fsPath: string, isResolvingSource: boolean): SourceComponent {
     if (this.forceIgnore.denies(fsPath)) {
-      // don't resolve the component if the metadata xml is denied
+      // don't resolve the component if the path is denied
       return;
     }
     const type = this.resolveType(fsPath);
