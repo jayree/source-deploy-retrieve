@@ -1850,7 +1850,6 @@
     "assistantRecommendationType": "assistantrecommendationtype",
     "insightType": "insighttype",
     "topicsForObjects": "topicsforobjects",
-    "xml": "emailservicesfunction",
     "type": "integrationhubsettingstype",
     "settings": "settings",
     "orchestrationContext": "orchestrationcontext",
@@ -1901,7 +1900,8 @@
     "workSkillRouting": "workskillrouting",
     "timeSheetTemplate": "timesheettemplate",
     "accountRelationshipShareRule": "accountrelationshipsharerule",
-    "IPAddressRange": "ipaddressrange"
+    "IPAddressRange": "ipaddressrange",
+    "xml": "emailservicesfunction"
   },
   "strictDirectoryNames": {
     "experiences": "experiencebundle",
