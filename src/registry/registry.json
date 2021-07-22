@@ -1904,15 +1904,7 @@
     "aura": "auradefinitionbundle",
     "lwc": "lightningcomponentbundle",
     "documents": "document",
-    "waveTemplates": "wavetemplatebundle",
-    "objects": "customobject",
-    "bots": "bot",
-    "objectTranslations": "customobjecttranslation",
-    "staticresources": "staticresource",
-    "sites": "customsite",
-    "workflows": "workflow",
-    "sharingRules": "sharingrules",
-    "emailservices": "emailservicesfunction"
+    "waveTemplates": "wavetemplatebundle"
   },
   "childTypes": {
     "customlabel": "customlabels",
