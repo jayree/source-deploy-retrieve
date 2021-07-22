@@ -938,7 +938,8 @@
       "id": "customsite",
       "name": "CustomSite",
       "suffix": "site",
-      "directoryName": "sites"
+      "directoryName": "sites",
+      "strictDirectoryName": true
     },
     "channellayout": {
       "id": "channellayout",
@@ -1249,7 +1250,8 @@
       "id": "accesscontrolpolicy",
       "name": "AccessControlPolicy",
       "suffix": "policy",
-      "directoryName": "accessControlPolicies"
+      "directoryName": "accessControlPolicies",
+      "strictDirectoryName": true
     },
     "skill": {
       "id": "skill",
@@ -1345,7 +1347,8 @@
       "id": "integrationhubsettings",
       "name": "IntegrationHubSettings",
       "suffix": "settings",
-      "directoryName": "integrationHub"
+      "directoryName": "integrationHub",
+      "strictDirectoryName": true
     },
     "orchestrationcontext": {
       "id": "orchestrationcontext",
@@ -1904,7 +1907,10 @@
     "aura": "auradefinitionbundle",
     "lwc": "lightningcomponentbundle",
     "documents": "document",
-    "waveTemplates": "wavetemplatebundle"
+    "waveTemplates": "wavetemplatebundle",
+    "accessControlPolicies": "accesscontrolpolicy",
+    "integrationHub": "integrationhubsettings",
+    "sites": "customsite"
   },
   "childTypes": {
     "customlabel": "customlabels",
