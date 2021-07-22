@@ -46,6 +46,7 @@
       "name": "StaticResource",
       "suffix": "resource",
       "directoryName": "staticresources",
+      "strictDirectoryName": true,
       "strategies": {
         "adapter": "mixedContent",
         "transformer": "staticResource"
@@ -1910,7 +1911,8 @@
     "waveTemplates": "wavetemplatebundle",
     "accessControlPolicies": "accesscontrolpolicy",
     "integrationHub": "integrationhubsettings",
-    "sites": "customsite"
+    "sites": "customsite",
+    "staticresources":"staticresource"
   },
   "childTypes": {
     "customlabel": "customlabels",
