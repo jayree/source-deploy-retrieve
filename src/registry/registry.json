@@ -19,11 +19,11 @@
             "ignoreParentName": true,
             "uniqueIdElement": "fullName",
             "directoryName": "labels",
-            "suffix": "labels"
+            "suffix": "label"
           }
         },
         "suffixes": {
-          "labels": "customlabel"
+          "label": "customlabel"
         },
         "directories": {
           "labels": "customlabel"
