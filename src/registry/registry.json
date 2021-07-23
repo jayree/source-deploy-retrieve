@@ -1916,9 +1916,9 @@
     "bots": "bot",
     "objectTranslations": "customobjecttranslation",
     "staticresources": "staticresource",
+    "sites": "customsite",
     "accessControlPolicies": "accesscontrolpolicy",
-    "integrationHub": "integrationhubsettings",
-    "sites": "customsite"
+    "integrationHub": "integrationhubsettings"
   },
   "childTypes": {
     "customlabel": "customlabels",
@@ -1954,12 +1954,12 @@
     "sites": "customsite",
     "sharingownerrule": "sharingrules",
     "sharingcriteriarule": "sharingrules",
+    "botversion": "bot",
     "sharingguestrule": "sharingrules",
     "sharingterritoryrule": "sharingrules",
     "managedtopic": "managedtopics",
     "accessControlPolicies": "accesscontrolpolicy",
     "integrationHub": "integrationhubsettings",
-    "botversion": "bot",
     "workskillroutingattribute": "workskillrouting"
   },
   "apiVersion": "52.0"
