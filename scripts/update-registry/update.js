@@ -82,6 +82,10 @@ function update(registry, describeResult) {
       registry.strictDirectoryNames[type.directoryName] = typeId;
     }
   }
+  for (const typeId of Object.keys(registry.types)) {
+    !registry.types[typeId].inFolder && delete registry.types[typeId].inFolder
+    !registry.types[typeId].strictDirectoryName && delete registry.types[typeId].strictDirectoryName
+  }
 }
 
 module.exports = update;
