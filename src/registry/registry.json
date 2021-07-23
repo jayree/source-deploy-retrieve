@@ -207,6 +207,7 @@
       "name": "CustomObject",
       "suffix": "object",
       "directoryName": "objects",
+      "strictDirectoryName": true,
       "children": {
         "types": {
           "customfield": {
@@ -668,6 +669,7 @@
       "name": "CustomObjectTranslation",
       "suffix": "objectTranslation",
       "directoryName": "objectTranslations",
+      "strictDirectoryName": true,
       "children": {
         "types": {
           "customfieldtranslation": {
@@ -1440,6 +1442,7 @@
       "name": "Bot",
       "suffix": "bot",
       "directoryName": "bots",
+      "strictDirectoryName": true,
       "children": {
         "types": {
           "botversion": {
@@ -1909,10 +1912,13 @@
     "lwc": "lightningcomponentbundle",
     "documents": "document",
     "waveTemplates": "wavetemplatebundle",
+    "objects": "customobject",
+    "bots": "bot",
+    "objectTranslations": "customobjecttranslation",
+    "staticresources": "staticresource",
     "accessControlPolicies": "accesscontrolpolicy",
     "integrationHub": "integrationhubsettings",
-    "sites": "customsite",
-    "staticresources": "staticresource"
+    "sites": "customsite"
   },
   "childTypes": {
     "customlabel": "customlabels",
