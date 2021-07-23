@@ -57,10 +57,6 @@ function update(registry, describeResult) {
       folderType: folderTypeId,
       folderContentType
     };
-
-    !generatedType.inFolder && delete generatedType.inFolder
-    !generatedType.strictDirectoryName && delete generatedType.strictDirectoryName
-
     let type = deepmerge(generatedType, registry.types[typeId] || {})
 
     // apply type override if one exists
@@ -85,6 +81,10 @@ function update(registry, describeResult) {
     } else {
       registry.strictDirectoryNames[type.directoryName] = typeId;
     }
+  }
+  for (const typeId of Object.keys(registry.types)) {
+    !registry.types[typeId].inFolder && delete registry.types[typeId].inFolder
+    !registry.types[typeId].strictDirectoryName && delete registry.types[typeId].strictDirectoryName
   }
 }
 
