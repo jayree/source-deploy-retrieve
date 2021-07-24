@@ -92,6 +92,7 @@ describe('Tooling Retrieve', () => {
     const stubCreateMetadataFile = sandboxStub.stub(fs, 'createWriteStream');
     sandboxStub.stub(fs, 'closeSync');
     sandboxStub.stub(fs, 'openSync');
+    sandboxStub.stub(fs, 'unlinkSync');
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     stubCreateMetadataFile.onCall(0).returns(new stream.PassThrough() as any);
@@ -123,6 +124,8 @@ describe('Tooling Retrieve', () => {
     const stubCreateMetadataFile = sandboxStub.stub(fs, 'createWriteStream');
     sandboxStub.stub(fs, 'closeSync');
     sandboxStub.stub(fs, 'openSync');
+    sandboxStub.stub(fs, 'unlinkSync');
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     stubCreateMetadataFile.onCall(0).returns(new stream.PassThrough() as any);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -166,6 +169,7 @@ describe('Tooling Retrieve', () => {
     stubCreateMetadataFile.onCall(1).returns(new stream.PassThrough() as any);
     sandboxStub.stub(fs, 'closeSync');
     sandboxStub.stub(fs, 'openSync');
+    sandboxStub.stub(fs, 'unlinkSync');
 
     const toolingAPI = new ToolingApi(mockConnection, resolver);
     const retrieveOpts = {
@@ -198,6 +202,7 @@ describe('Tooling Retrieve', () => {
     stubCreateMetadataFile.onCall(1).returns(new stream.PassThrough() as any);
     sandboxStub.stub(fs, 'closeSync');
     sandboxStub.stub(fs, 'openSync');
+    sandboxStub.stub(fs, 'unlinkSync');
 
     const toolingAPI = new ToolingApi(mockConnection, resolver);
     const retrieveResults: SourceRetrieveResult = await toolingAPI.retrieve({

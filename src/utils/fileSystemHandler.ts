@@ -19,6 +19,9 @@ export function ensureDirectoryExists(filePath: string): void {
 
 export function ensureFileExists(filePath: string): void {
   ensureDirectoryExists(path.dirname(filePath));
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+  }
   fs.closeSync(fs.openSync(filePath, 'w'));
 }
 
