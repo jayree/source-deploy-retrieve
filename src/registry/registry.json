@@ -1948,7 +1948,6 @@
     "assignmentrule": "assignmentrules",
     "autoresponserule": "autoresponserules",
     "escalationrule": "escalationrules",
-    "customfieldtranslation": "customobjecttranslation",
     "matchingrule": "matchingrules",
     "waveTemplates": "wavetemplatebundle",
     "sites": "customsite",
@@ -1960,7 +1959,8 @@
     "managedtopic": "managedtopics",
     "accessControlPolicies": "accesscontrolpolicy",
     "integrationHub": "integrationhubsettings",
-    "workskillroutingattribute": "workskillrouting"
+    "workskillroutingattribute": "workskillrouting",
+    "customfieldtranslation": "customobjecttranslation"
   },
   "apiVersion": "52.0"
 }
