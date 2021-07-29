@@ -73,18 +73,39 @@ function update(registry, describeResult) {
       initializeChildRegistry(type, childNames, registry);
     }
 
-    registry.types[typeId] = type
-
     // index file suffixes, otherwise require index type as requiring strict type folder
-    if (type.suffix) {
+    if (type.strategies && type.strategies.transformer === 'decomposed') {
+      type.strictDirectoryName = true;
       registry.suffixes[type.suffix] = typeId;
-    } else {
+    }
+
+    if (type.strictDirectoryName === false) {
+      if (
+        type.suffix &&
+        registry.suffixes[type.suffix] &&
+        registry.suffixes[type.suffix] !== typeId
+      ) {
+        type.strictDirectoryName = true;
+      } else {
+        registry.suffixes[type.suffix] = typeId;
+      }
+    }
+    if (type.strictDirectoryName === true) {
       registry.strictDirectoryNames[type.directoryName] = typeId;
     }
+
+    if (type.children && type.children.types) {
+      Object.keys(type.children.types).forEach((childType) => {
+        registry.childTypes[childType] = typeId;
+      });
+    }
+
+    registry.types[typeId] = type;
   }
   for (const typeId of Object.keys(registry.types)) {
-    !registry.types[typeId].inFolder && delete registry.types[typeId].inFolder
-    !registry.types[typeId].strictDirectoryName && delete registry.types[typeId].strictDirectoryName
+    !registry.types[typeId].inFolder && delete registry.types[typeId].inFolder;
+    !registry.types[typeId].strictDirectoryName &&
+      delete registry.types[typeId].strictDirectoryName;
   }
 }
 
