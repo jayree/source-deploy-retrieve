@@ -19,11 +19,11 @@
             "ignoreParentName": true,
             "uniqueIdElement": "fullName",
             "directoryName": "labels",
-            "suffix": "label"
+            "suffix": "labels"
           }
         },
         "suffixes": {
-          "label": "customlabel"
+          "labels": "customlabel"
         },
         "directories": {
           "labels": "customlabel"
@@ -1690,37 +1690,31 @@
       "id": "ipaddressrange",
       "name": "IPAddressRange",
       "suffix": "IPAddressRange",
-      "directoryName": "IPAddressRanges",
-      "inFolder": false,
-      "strictDirectoryName": false
+      "directoryName": "IPAddressRanges"
     },
     "icon": {
       "id": "icon",
       "name": "Icon",
       "suffix": "icon",
-      "directoryName": "icons",
-      "strictDirectoryName": false
+      "directoryName": "icons"
     },
     "businessprocessgroup": {
       "id": "businessprocessgroup",
       "name": "BusinessProcessGroup",
       "suffix": "businessProcessGroup",
-      "directoryName": "businessProcessGroups",
-      "strictDirectoryName": false
+      "directoryName": "businessProcessGroups"
     },
     "businessprocessfeedbackconfiguration": {
       "id": "businessprocessfeedbackconfiguration",
       "name": "BusinessProcessFeedbackConfiguration",
       "suffix": "businessProcessFeedbackConfiguration",
-      "directoryName": "businessProcessFeedbackConfigurations",
-      "strictDirectoryName": false
+      "directoryName": "businessProcessFeedbackConfigurations"
     },
     "discoveryaimodel": {
       "id": "discoveryaimodel",
       "name": "DiscoveryAIModel",
       "suffix": "model",
       "directoryName": "discovery",
-      "strictDirectoryName": false,
       "strategies": {
         "adapter": "matchingContentFile"
       }
@@ -1729,290 +1723,268 @@
       "id": "discoverygoal",
       "name": "DiscoveryGoal",
       "suffix": "goal",
-      "directoryName": "discovery",
-      "strictDirectoryName": false
+      "directoryName": "discovery"
     },
     "restrictionrule": {
       "id": "restrictionrule",
       "name": "RestrictionRule",
       "suffix": "rule",
       "directoryName": "restrictionRules",
-      "strictDirectoryName": false
+      "strictDirectoryName": true
     },
     "functionreference": {
       "id": "functionreference",
       "name": "FunctionReference",
       "suffix": "function",
-      "directoryName": "functions",
-      "strictDirectoryName": false
+      "directoryName": "functions"
     },
     "participantrole": {
       "id": "participantrole",
       "name": "ParticipantRole",
       "suffix": "participantRole",
-      "directoryName": "participantRoles",
-      "strictDirectoryName": false
+      "directoryName": "participantRoles"
     },
     "gatewayproviderpaymentmethodtype": {
       "id": "gatewayproviderpaymentmethodtype",
       "name": "GatewayProviderPaymentMethodType",
       "suffix": "gatewayProviderPaymentMethodType",
-      "directoryName": "gatewayProviderPaymentMethodTypes",
-      "strictDirectoryName": false
+      "directoryName": "gatewayProviderPaymentMethodTypes"
     },
     "careprovidersearchconfig": {
       "id": "careprovidersearchconfig",
       "name": "CareProviderSearchConfig",
       "suffix": "careProviderSearchConfig",
-      "directoryName": "careProviderSearchConfigs",
-      "strictDirectoryName": false
+      "directoryName": "careProviderSearchConfigs"
     },
     "caresystemfieldmapping": {
       "id": "caresystemfieldmapping",
       "name": "CareSystemFieldMapping",
       "suffix": "careSystemFieldMapping",
-      "directoryName": "careSystemFieldMappings",
-      "strictDirectoryName": false
+      "directoryName": "careSystemFieldMappings"
     },
     "documenttype": {
       "id": "documenttype",
       "name": "DocumentType",
       "suffix": "documentType",
-      "directoryName": "documentTypes",
-      "strictDirectoryName": false
+      "directoryName": "documentTypes"
     },
     "ocrsampledocument": {
       "id": "ocrsampledocument",
       "name": "OcrSampleDocument",
       "suffix": "ocrSampleDocument",
-      "directoryName": "ocrSampleDocuments",
-      "strictDirectoryName": false
+      "directoryName": "ocrSampleDocuments"
     },
     "ocrtemplate": {
       "id": "ocrtemplate",
       "name": "OcrTemplate",
       "suffix": "ocrTemplate",
-      "directoryName": "ocrTemplates",
-      "strictDirectoryName": false
+      "directoryName": "ocrTemplates"
     },
     "actionplantemplate": {
       "id": "actionplantemplate",
       "name": "ActionPlanTemplate",
       "suffix": "apt",
-      "directoryName": "actionPlanTemplates",
-      "strictDirectoryName": false
+      "directoryName": "actionPlanTemplates"
     },
     "decisiontable": {
       "id": "decisiontable",
       "name": "DecisionTable",
       "suffix": "decisionTable",
-      "directoryName": "decisionTables",
-      "strictDirectoryName": false
+      "directoryName": "decisionTables"
     },
     "decisiontabledatasetlink": {
       "id": "decisiontabledatasetlink",
       "name": "DecisionTableDatasetLink",
       "suffix": "decisionTableDatasetLink",
-      "directoryName": "decisionTableDatasetLinks",
-      "strictDirectoryName": false
+      "directoryName": "decisionTableDatasetLinks"
     },
     "briefcasedefinition": {
       "id": "briefcasedefinition",
       "name": "BriefcaseDefinition",
       "suffix": "briefcaseDefinition",
-      "directoryName": "briefcaseDefinitions",
-      "strictDirectoryName": false
+      "directoryName": "briefcaseDefinitions"
     },
     "batchprocessjobdefinition": {
       "id": "batchprocessjobdefinition",
       "name": "BatchProcessJobDefinition",
       "suffix": "batchProcessJobDefinition",
-      "directoryName": "batchProcessJobDefinitions",
-      "strictDirectoryName": false
+      "directoryName": "batchProcessJobDefinitions"
     },
     "webstoretemplate": {
       "id": "webstoretemplate",
       "name": "WebStoreTemplate",
       "suffix": "webStoreTemplate",
-      "directoryName": "webStoreTemplates",
-      "strictDirectoryName": false
+      "directoryName": "webStoreTemplates"
     },
     "dynamictrigger": {
       "id": "dynamictrigger",
       "name": "DynamicTrigger",
       "suffix": "dynamicTrigger",
-      "directoryName": "dynamicTriggers",
-      "strictDirectoryName": false
+      "directoryName": "dynamicTriggers"
     },
     "objecthierarchyrelationship": {
       "id": "objecthierarchyrelationship",
       "name": "ObjectHierarchyRelationship",
       "suffix": "settings",
       "directoryName": "ObjectHierarchyRelationship",
-      "strictDirectoryName": false
+      "strictDirectoryName": true
     },
     "salesagreementsettings": {
       "id": "salesagreementsettings",
       "name": "SalesAgreementSettings",
       "suffix": "salesAgreementSetting",
-      "directoryName": "salesAgreementSettings",
-      "strictDirectoryName": false
+      "directoryName": "salesAgreementSettings"
     },
     "acctmgrtargetsettings": {
       "id": "acctmgrtargetsettings",
       "name": "AcctMgrTargetSettings",
       "suffix": "acctMgrTargetSetting",
-      "directoryName": "acctMgrTargetSettings",
-      "strictDirectoryName": false
+      "directoryName": "acctMgrTargetSettings"
     },
     "accountforecastsettings": {
       "id": "accountforecastsettings",
       "name": "AccountForecastSettings",
       "suffix": "accountForecastSetting",
-      "directoryName": "AccountForecastSettings",
-      "strictDirectoryName": false
+      "directoryName": "AccountForecastSettings"
     },
     "industriesmanufacturingsettings": {
       "id": "industriesmanufacturingsettings",
       "name": "IndustriesManufacturingSettings",
       "suffix": "settings",
       "directoryName": "IndustriesManufacturingSettings",
-      "strictDirectoryName": false
+      "strictDirectoryName": true
     },
     "fieldservicemobileextension": {
       "id": "fieldservicemobileextension",
       "name": "FieldServiceMobileExtension",
       "suffix": "fieldServiceMobileExtension",
-      "directoryName": "fieldServiceMobileExtensions",
-      "strictDirectoryName": false
+      "directoryName": "fieldServiceMobileExtensions"
     },
     "datasource": {
       "id": "datasource",
       "name": "DataSource",
       "suffix": "dataSource",
       "directoryName": "mktDataSources",
-      "strictDirectoryName": false
+      "strictDirectoryName": true
     },
     "datasourceobject": {
       "id": "datasourceobject",
       "name": "DataSourceObject",
       "suffix": "dataSourceObject",
-      "directoryName": "mktDataSourceObjects",
-      "strictDirectoryName": false
+      "directoryName": "mktDataSourceObjects"
     },
     "externaldataconnector": {
       "id": "externaldataconnector",
       "name": "ExternalDataConnector",
       "suffix": "externalDataConnector",
-      "directoryName": "externalDataConnectors",
-      "strictDirectoryName": false
+      "directoryName": "externalDataConnectors"
     },
     "dataconnectors3": {
       "id": "dataconnectors3",
       "name": "DataConnectorS3",
       "suffix": "s3DataConnector",
-      "directoryName": "s3DataConnectors",
-      "strictDirectoryName": false
+      "directoryName": "s3DataConnectors"
     },
     "datastreamdefinition": {
       "id": "datastreamdefinition",
       "name": "DataStreamDefinition",
       "suffix": "dataStreamDefinition",
-      "directoryName": "dataStreamDefinitions",
-      "strictDirectoryName": false
+      "directoryName": "dataStreamDefinitions"
     },
     "mktdatatranobject": {
       "id": "mktdatatranobject",
       "name": "MktDataTranObject",
       "suffix": "mktDataTranObject",
       "directoryName": "mktDataTranObjects",
-      "strictDirectoryName": false
+      "children": {
+        "types": {
+          "mktdatatranfield": {
+            "id": "mktdatatranfield",
+            "name": "MktDataTranField",
+            "directoryName": "mktDataTranFields",
+            "suffix": "mktDataTranField"
+          }
+        },
+        "suffixes": {
+          "mktDataTranField": "mktdatatranfield"
+        },
+        "directories": {
+          "mktDataTranFields": "mktdatatranfield"
+        }
+      }
     },
     "fieldsrctrgtrelationship": {
       "id": "fieldsrctrgtrelationship",
       "name": "FieldSrcTrgtRelationship",
       "suffix": "fieldSrcTrgtRelationship",
-      "directoryName": "fieldSrcTrgtRelationships",
-      "strictDirectoryName": false
+      "directoryName": "fieldSrcTrgtRelationships"
     },
     "objectsourcetargetmap": {
       "id": "objectsourcetargetmap",
       "name": "ObjectSourceTargetMap",
       "suffix": "objectSourceTargetMap",
-      "directoryName": "objectSourceTargetMaps",
-      "strictDirectoryName": false
+      "directoryName": "objectSourceTargetMaps"
     },
     "benefitaction": {
       "id": "benefitaction",
       "name": "BenefitAction",
       "suffix": "benefitAction",
-      "directoryName": "benefitActions",
-      "strictDirectoryName": false
+      "directoryName": "benefitActions"
     },
     "channelobjectlinkingrule": {
       "id": "channelobjectlinkingrule",
       "name": "ChannelObjectLinkingRule",
       "suffix": "ChannelObjectLinkingRule",
-      "directoryName": "ChannelObjectLinkingRules",
-      "strictDirectoryName": false
+      "directoryName": "ChannelObjectLinkingRules"
     },
     "conversationvendorinfo": {
       "id": "conversationvendorinfo",
       "name": "ConversationVendorInfo",
       "suffix": "ConversationVendorInformation",
-      "directoryName": "ConversationVendorInformation",
-      "strictDirectoryName": false
+      "directoryName": "ConversationVendorInformation"
     },
     "conversationvendorfielddef": {
       "id": "conversationvendorfielddef",
       "name": "ConversationVendorFieldDef",
       "suffix": "ConversationVendorFieldDefinition",
-      "directoryName": "ConversationVendorFieldDefinitions",
-      "strictDirectoryName": false
+      "directoryName": "ConversationVendorFieldDefinitions"
     },
     "schedulingrule": {
       "id": "schedulingrule",
       "name": "SchedulingRule",
       "suffix": "schedulingRule",
-      "directoryName": "SchedulingRules",
-      "strictDirectoryName": false
+      "directoryName": "SchedulingRules"
     },
     "datamappingschema": {
       "id": "datamappingschema",
       "name": "DataMappingSchema",
       "suffix": "dataMappingSchema",
-      "directoryName": "dataMappingSchema",
-      "strictDirectoryName": false
+      "directoryName": "dataMappingSchema"
     },
     "datamapping": {
       "id": "datamapping",
       "name": "DataMapping",
       "suffix": "dataMapping",
-      "directoryName": "dataMapping",
-      "strictDirectoryName": false
+      "directoryName": "dataMapping"
     },
     "federationdatamappingusage": {
       "id": "federationdatamappingusage",
       "name": "FederationDataMappingUsage",
       "suffix": "federationDataMappingUsage",
-      "directoryName": "federationDataMappingUsage",
-      "strictDirectoryName": false
+      "directoryName": "federationDataMappingUsage"
     },
     "connectedsystem": {
       "id": "connectedsystem",
       "name": "ConnectedSystem",
       "suffix": "connectedSystem",
-      "directoryName": "ConnectedSystem",
-      "strictDirectoryName": false
+      "directoryName": "ConnectedSystem"
     }
   },
   "suffixes": {
-    "sites": "customsite",
     "icon": "icon",
     "businessProcessGroup": "businessprocessgroup",
     "model": "discoveryaimodel",
     "goal": "discoverygoal",
-    "functions": "functionreference",
     "participantRole": "participantrole",
     "gatewayProviderPaymentMethodType": "gatewayproviderpaymentmethodtype",
     "careProviderSearchConfig": "careprovidersearchconfig",
@@ -2025,7 +1997,7 @@
     "decisionTableDatasetLink": "decisiontabledatasetlink",
     "briefcaseDefinition": "briefcasedefinition",
     "batchProcessJobDefinition": "batchprocessjobdefinition",
-    "webstoretemplate": "webstoretemplate",
+    "webStoreTemplate": "webstoretemplate",
     "acctMgrTargetSetting": "acctmgrtargetsettings",
     "dataSourceObject": "datasourceobject",
     "externalDataConnector": "externaldataconnector",
@@ -2037,7 +2009,6 @@
     "installedPackage": "installedpackage",
     "labels": "customlabels",
     "navigationMenu": "navigationmenu",
-    "resource": "staticresource",
     "scf": "scontrol",
     "crt": "certificate",
     "messageChannel": "lightningmessagechannel",
@@ -2058,16 +2029,6 @@
     "standardValueSet": "standardvalueset",
     "customPermission": "custompermission",
     "object": "customobject",
-    "field": "customfield",
-    "index": "index",
-    "businessProcess": "businessprocess",
-    "recordType": "recordtype",
-    "compactLayout": "compactlayout",
-    "webLink": "weblink",
-    "validationRule": "validationrule",
-    "sharingReason": "sharingreason",
-    "listView": "listview",
-    "fieldSet": "fieldset",
     "reportType": "reporttype",
     "report": "report",
     "dashboard": "dashboard",
@@ -2075,7 +2036,6 @@
     "snapshot": "analyticsnapshot",
     "feedFilter": "customfeedfilter",
     "layout": "layout",
-    "document": "document",
     "weblink": "custompageweblink",
     "letter": "letterhead",
     "email": "emailtemplate",
@@ -2105,7 +2065,6 @@
     "homePageComponent": "homepagecomponent",
     "homePageLayout": "homepagelayout",
     "objectTranslation": "customobjecttranslation",
-    "fieldTranslation": "customfieldtranslation",
     "translation": "translations",
     "globalValueSetTranslation": "globalvaluesettranslation",
     "standardValueSetTranslation": "standardvaluesettranslation",
@@ -2209,7 +2168,6 @@
     "prompt": "prompt",
     "mlDomain": "mldomain",
     "bot": "bot",
-    "botVersion": "botversion",
     "animationRule": "animationrule",
     "deployment": "recordactiondeployment",
     "EmbeddedServiceFlowConfig": "embeddedserviceflowconfig",
@@ -2244,7 +2202,22 @@
     "timeSheetTemplate": "timesheettemplate",
     "accountRelationshipShareRule": "accountrelationshipsharerule",
     "IPAddressRange": "ipaddressrange",
-    "xml": "emailservicesfunction"
+    "xml": "emailservicesfunction",
+    "businessProcessFeedbackConfiguration": "businessprocessfeedbackconfiguration",
+    "function": "functionreference",
+    "dynamicTrigger": "dynamictrigger",
+    "salesAgreementSetting": "salesagreementsettings",
+    "accountForecastSetting": "accountforecastsettings",
+    "fieldServiceMobileExtension": "fieldservicemobileextension",
+    "dataStreamDefinition": "datastreamdefinition",
+    "ChannelObjectLinkingRule": "channelobjectlinkingrule",
+    "ConversationVendorInformation": "conversationvendorinfo",
+    "ConversationVendorFieldDefinition": "conversationvendorfielddef",
+    "schedulingRule": "schedulingrule",
+    "dataMappingSchema": "datamappingschema",
+    "dataMapping": "datamapping",
+    "federationDataMappingUsage": "federationdatamappingusage",
+    "connectedSystem": "connectedsystem"
   },
   "strictDirectoryNames": {
     "experiences": "experiencebundle",
@@ -2258,14 +2231,14 @@
     "staticresources": "staticresource",
     "sites": "customsite",
     "accessControlPolicies": "accesscontrolpolicy",
-    "integrationHub": "integrationhubsettings"
+    "integrationHub": "integrationhubsettings",
+    "mktDataSources": "datasource",
+    "restrictionRules": "restrictionrule",
+    "ObjectHierarchyRelationship": "objecthierarchyrelationship",
+    "IndustriesManufacturingSettings": "industriesmanufacturingsettings"
   },
   "childTypes": {
     "customlabel": "customlabels",
-    "staticresources": "staticresource",
-    "experiences": "experiencebundle",
-    "aura": "auradefinitionbundle",
-    "lwc": "lightningcomponentbundle",
     "customfield": "customobject",
     "index": "customobject",
     "businessprocess": "customobject",
@@ -2276,7 +2249,6 @@
     "sharingreason": "customobject",
     "listview": "customobject",
     "fieldset": "customobject",
-    "documents": "document",
     "formsection": "form",
     "workflowfieldupdate": "workflow",
     "workflowknowledgepublish": "workflow",
@@ -2289,17 +2261,14 @@
     "autoresponserule": "autoresponserules",
     "escalationrule": "escalationrules",
     "matchingrule": "matchingrules",
-    "waveTemplates": "wavetemplatebundle",
-    "sites": "customsite",
     "sharingownerrule": "sharingrules",
     "sharingcriteriarule": "sharingrules",
     "botversion": "bot",
     "sharingguestrule": "sharingrules",
     "sharingterritoryrule": "sharingrules",
     "managedtopic": "managedtopics",
-    "accessControlPolicies": "accesscontrolpolicy",
-    "integrationHub": "integrationhubsettings",
     "workskillroutingattribute": "workskillrouting",
+    "mktdatatranfield": "mktdatatranobject",
     "customfieldtranslation": "customobjecttranslation"
   },
   "apiVersion": "52.0"
