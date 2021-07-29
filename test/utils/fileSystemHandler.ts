@@ -80,7 +80,7 @@ describe('File System Utils', () => {
       const closeStub = env.stub(fs, 'closeSync');
       const openStub = env.stub(fs, 'openSync');
       openStub.returns(123);
-      const existsSyncStub = env.stub(fs, 'existsSync').onCall(0).returns(true);
+      const existsSyncStub = env.stub(fs, 'existsSync').returns(true);
 
       fsUtil.ensureFileExists(path);
 
