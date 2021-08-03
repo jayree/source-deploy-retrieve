@@ -54,7 +54,7 @@ if (source === '-p') {
 run('Applying registry updates', () => {
   const registry = fs.existsSync(REGISTRY_PATH)
     ? JSON.parse(fs.readFileSync(REGISTRY_PATH))
-    : { types: {}, suffixes: {}, strictTypeFolder: {} };;
+    : { types: {}, suffixes: {}, strictDirectoryNames: {}, childTypes: {} };
 
   update(registry, describeResult);
   registry.apiVersion = apiVersion;

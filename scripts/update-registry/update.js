@@ -16,7 +16,7 @@ function initializeChildRegistry(type, childNames) {
       directoryName: `${camelCase}s`,
       suffix: camelCase,
     };
-  };
+  }
 
   for (const name of childNames) {
     const childTypeId = name.toLowerCase();
@@ -29,18 +29,11 @@ function initializeChildRegistry(type, childNames) {
 }
 
 function update(registry, describeResult) {
-  const typeOverrides = JSON.parse(fs.readFileSync(path.join(__dirname, 'typeOverride.json')));
+  const typeOverrides = JSON.parse(fs.readFileSync(path.join(__dirname, 'typeOverride.json')))
 
   for (const object of describeResult.metadataObjects) {
     let typeId = object.xmlName.toLowerCase();
-    const {
-      xmlName: name,
-      suffix,
-      directoryName,
-      inFolder,
-      childXmlNames,
-      folderContentType,
-    } = object;
+    const { xmlName: name, suffix, directoryName, inFolder, childXmlNames, folderContentType } = object;
 
     // If it's a type with folders, process the folder type later
     let folderTypeId;
@@ -49,9 +42,9 @@ function update(registry, describeResult) {
         xmlName: `${name}Folder`,
         suffix: `${typeId}Folder`,
         directoryName,
-        folderContentType: typeId,
+        folderContentType: typeId
       });
-      folderTypeId = `${typeId}folder`;
+      folderTypeId = `${typeId}folder`
     }
 
     const generatedType = {
@@ -62,16 +55,16 @@ function update(registry, describeResult) {
       inFolder: inFolder === 'true' || inFolder === true,
       strictDirectoryName: !suffix,
       folderType: folderTypeId,
-      folderContentType,
+      folderContentType
     };
-    let type = deepmerge(generatedType, registry.types[typeId] || {});
+    let type = deepmerge(generatedType, registry.types[typeId] || {})
 
     // apply type override if one exists
-    const typeOverride = typeOverrides[typeId];
+    const typeOverride = typeOverrides[typeId]
     if (typeOverride) {
-      type = deepmerge(type, typeOverride);
+      type = deepmerge(type, typeOverride)
       if (typeOverride.id) {
-        typeId = typeOverride.id;
+        typeId = typeOverride.id
       }
     }
 
@@ -80,19 +73,39 @@ function update(registry, describeResult) {
       initializeChildRegistry(type, childNames, registry);
     }
 
-    registry.types[typeId] = type;
-
     // index file suffixes, otherwise require index type as requiring strict type folder
-    if (type.suffix) {
-      if (!Array.isArray(registry.suffixes[type.suffix])) {
-        registry.suffixes[type.suffix] = [];
+    if (type.strategies && type.strategies.transformer === 'decomposed') {
+      type.strictDirectoryName = true;
+      registry.suffixes[type.suffix] = typeId;
+    }
+
+    if (type.strictDirectoryName === false) {
+      if (
+        type.suffix &&
+        registry.suffixes[type.suffix] &&
+        registry.suffixes[type.suffix] !== typeId
+      ) {
+        type.strictDirectoryName = true;
+      } else {
+        registry.suffixes[type.suffix] = typeId;
       }
-      if (registry.suffixes[type.suffix].indexOf(typeId) === -1) {
-        registry.suffixes[type.suffix].push(typeId);
-      }
-    } else {
+    }
+    if (type.strictDirectoryName === true) {
       registry.strictDirectoryNames[type.directoryName] = typeId;
     }
+
+    if (type.children && type.children.types) {
+      Object.keys(type.children.types).forEach((childType) => {
+        registry.childTypes[childType] = typeId;
+      });
+    }
+
+    registry.types[typeId] = type;
+  }
+  for (const typeId of Object.keys(registry.types)) {
+    !registry.types[typeId].inFolder && delete registry.types[typeId].inFolder;
+    !registry.types[typeId].strictDirectoryName &&
+      delete registry.types[typeId].strictDirectoryName;
   }
 }
 
