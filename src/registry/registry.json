@@ -568,6 +568,11 @@
           "send": "workflowsend",
           "outboundMessages": "workflowoutboundmessage",
           "rules": "workflowrule"
+        },
+        "strategies": {
+          "adapter": "decomposed",
+          "transformer": "decomposed",
+          "decomposition": "folderPerType"
         }
       }
     },
@@ -1028,6 +1033,11 @@
           "sharingCriteriaRules": "sharingcriteriarule",
           "sharingGuestRules": "sharingguestrule",
           "sharingTerritoryRules": "sharingterritoryrule"
+        },
+        "strategies": {
+          "adapter": "decomposed",
+          "transformer": "decomposed",
+          "decomposition": "folderPerType"
         }
       }
     },
