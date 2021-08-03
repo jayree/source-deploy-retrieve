@@ -29,7 +29,7 @@ describe('NonDecomposedMetadataTransformer', () => {
       expect(await transformer.toMetadataFormat(child1)).to.deep.equal([]);
       expect(await transformer.toMetadataFormat(child2)).to.deep.equal([]);
       expect(context.recomposition.state).to.deep.equal({
-        [component.fullName]: {
+        [component.fullName + '#' + component.type.name]: {
           component,
           children: new ComponentSet([child1, child2], mockRegistry),
         },
@@ -51,8 +51,14 @@ describe('NonDecomposedMetadataTransformer', () => {
           [component.xml]: {
             parent: component,
             children: {
-              [nonDecomposed.CHILD_1_NAME]: nonDecomposed.CHILD_1_XML,
-              [nonDecomposed.CHILD_2_NAME]: nonDecomposed.CHILD_2_XML,
+              [nonDecomposed.CHILD_1_NAME]: {
+                source: nonDecomposed.CHILD_1_XML,
+                childType: mockRegistryData.types.nondecomposed.children.types.nondecomposedchild,
+              },
+              [nonDecomposed.CHILD_2_NAME]: {
+                source: nonDecomposed.CHILD_2_XML,
+                childType: mockRegistryData.types.nondecomposed.children.types.nondecomposedchild,
+              },
             },
           },
         },
@@ -81,8 +87,14 @@ describe('NonDecomposedMetadataTransformer', () => {
           [componentToConvert.xml]: {
             parent: componentToConvert,
             children: {
-              [nonDecomposed.UNCLAIMED_CHILD_NAME]: nonDecomposed.UNCLAIMED_CHILD_XML,
-              [nonDecomposed.CHILD_3_NAME]: nonDecomposed.CHILD_3_XML,
+              [nonDecomposed.UNCLAIMED_CHILD_NAME]: {
+                source: nonDecomposed.UNCLAIMED_CHILD_XML,
+                childType: mockRegistryData.types.nondecomposed.children.types.nondecomposedchild,
+              },
+              [nonDecomposed.CHILD_3_NAME]: {
+                source: nonDecomposed.CHILD_3_XML,
+                childType: mockRegistryData.types.nondecomposed.children.types.nondecomposedchild,
+              },
             },
           },
         },
@@ -90,8 +102,14 @@ describe('NonDecomposedMetadataTransformer', () => {
           [component.xml]: {
             parent: component,
             children: {
-              [nonDecomposed.CHILD_1_NAME]: nonDecomposed.CHILD_1_XML,
-              [nonDecomposed.CHILD_2_NAME]: nonDecomposed.CHILD_2_XML,
+              [nonDecomposed.CHILD_1_NAME]: {
+                source: nonDecomposed.CHILD_1_XML,
+                childType: mockRegistryData.types.nondecomposed.children.types.nondecomposedchild,
+              },
+              [nonDecomposed.CHILD_2_NAME]: {
+                source: nonDecomposed.CHILD_2_XML,
+                childType: mockRegistryData.types.nondecomposed.children.types.nondecomposedchild,
+              },
             },
           },
         },

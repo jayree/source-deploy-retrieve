@@ -11,7 +11,7 @@ import { JsToXml } from './streams';
 import { META_XML_SUFFIX, XML_NS_KEY, XML_NS_URL } from '../common';
 import { getString, JsonArray, JsonMap } from '@salesforce/ts-types';
 import { ComponentSet } from '../collections';
-import { RecompositionStrategy } from '../registry/types';
+import { RecompositionStrategy, MetadataType } from '../registry/types';
 import { isEmpty } from '@salesforce/kit';
 
 abstract class ConvertTransactionFinalizer<T> {
@@ -134,11 +134,13 @@ export interface NonDecompositionState {
   unclaimed: ChildIndex;
 }
 
+type Child = { source: JsonMap; childType: MetadataType };
+
 type ChildIndex = {
   [componentKey: string]: {
     parent: SourceComponent;
     children: {
-      [childName: string]: JsonMap;
+      [childName: string]: Child;
     };
   };
 };
@@ -288,14 +290,14 @@ class NonDecompositionFinalizer extends ConvertTransactionFinalizer<NonDecomposi
     return childrenOfUnprocessed;
   }
 
-  private async recompose(children: JsonMap[], parent: SourceComponent): Promise<JsonMap> {
+  private async recompose(children: Child[], parent: SourceComponent): Promise<JsonMap> {
     const parentXmlObj =
       parent.type.strategies.recomposition === RecompositionStrategy.StartEmpty
         ? {}
         : await parent.parseXml();
-    const groupName = parent.type.directoryName;
     const parentName = parent.type.name;
     for (const child of children) {
+      const groupName = child.childType.directoryName;
       if (!parentXmlObj[parentName]) {
         parentXmlObj[parentName] = { [XML_NS_KEY]: XML_NS_URL };
       }
@@ -308,7 +310,7 @@ class NonDecompositionFinalizer extends ConvertTransactionFinalizer<NonDecomposi
 
       const group = parent[groupName] as JsonArray;
 
-      group.push(child);
+      group.push(child.source);
     }
 
     return parentXmlObj;

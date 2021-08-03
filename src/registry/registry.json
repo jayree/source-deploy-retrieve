@@ -592,6 +592,11 @@
         "directories": {
           "assignmentRule": "assignmentrule"
         }
+      },
+      "strategies": {
+        "adapter": "default",
+        "transformer": "nonDecomposed",
+        "recomposition": "startEmpty"
       }
     },
     "autoresponserules": {
@@ -615,6 +620,11 @@
         "directories": {
           "autoResponseRule": "autoresponserule"
         }
+      },
+      "strategies": {
+        "adapter": "default",
+        "transformer": "nonDecomposed",
+        "recomposition": "startEmpty"
       }
     },
     "escalationrules": {
@@ -638,6 +648,11 @@
         "directories": {
           "escalationRule": "escalationrule"
         }
+      },
+      "strategies": {
+        "adapter": "default",
+        "transformer": "nonDecomposed",
+        "recomposition": "startEmpty"
       }
     },
     "posttemplate": {
@@ -809,6 +824,11 @@
         "directories": {
           "matchingRules": "matchingrule"
         }
+      },
+      "strategies": {
+        "adapter": "default",
+        "transformer": "nonDecomposed",
+        "recomposition": "startEmpty"
       }
     },
     "duplicaterule": {
