@@ -28,10 +28,10 @@
           }
         },
         "suffixes": {
-          "customLabel": "labels"
+          "labels": "customlabel"
         },
         "directories": {
-          "customLabels": "labels"
+          "labels": "customlabel"
         }
       },
       "strategies": {
@@ -471,6 +471,9 @@
         },
         "suffixes": {
           "formSection": "formsection"
+        },
+        "directories": {
+          "formSections": "formsection"
         }
       }
     },
@@ -599,62 +602,63 @@
           "workflowfieldupdate": {
             "id": "workflowfieldupdate",
             "name": "WorkflowFieldUpdate",
-            "directoryName": "workflowFieldUpdates",
-            "suffix": "workflowFieldUpdate"
+            "directoryName": "fieldUpdates",
+            "suffix": "fieldUpdate"
           },
           "workflowknowledgepublish": {
             "id": "workflowknowledgepublish",
             "name": "WorkflowKnowledgePublish",
-            "directoryName": "workflowKnowledgePublishs",
-            "suffix": "workflowKnowledgePublish"
+            "directoryName": "knowledgePublishes",
+            "suffix": "knowledgePublish"
           },
           "workflowtask": {
             "id": "workflowtask",
             "name": "WorkflowTask",
-            "directoryName": "workflowTasks",
-            "suffix": "workflowTask"
+            "directoryName": "tasks",
+            "suffix": "task"
           },
           "workflowalert": {
             "id": "workflowalert",
             "name": "WorkflowAlert",
-            "directoryName": "workflowAlerts",
-            "suffix": "workflowAlert"
+            "directoryName": "alerts",
+            "suffix": "alert"
           },
           "workflowsend": {
             "id": "workflowsend",
             "name": "WorkflowSend",
-            "directoryName": "workflowSends",
-            "suffix": "workflowSend"
+            "directoryName": "send",
+            "suffix": "send"
           },
           "workflowoutboundmessage": {
             "id": "workflowoutboundmessage",
             "name": "WorkflowOutboundMessage",
-            "directoryName": "workflowOutboundMessages",
-            "suffix": "workflowOutboundMessage"
+            "directoryName": "outboundMessages",
+            "suffix": "outboundMessage"
           },
           "workflowrule": {
             "id": "workflowrule",
             "name": "WorkflowRule",
-            "directoryName": "workflowRules",
-            "suffix": "workflowRule"
+            "directoryName": "rules",
+            "suffix": "rule"
           }
         },
         "suffixes": {
-          "workflowFieldUpdate": "workflowfieldupdate",
-          "workflowKnowledgePublish": "workflowknowledgepublish",
-          "workflowTask": "workflowtask",
-          "workflowAlert": "workflowalert",
-          "workflowSend": "workflowsend",
-          "workflowOutboundMessage": "workflowoutboundmessage",
-          "workflowRule": "workflowrule"
+          "fieldUpdate": "workflowfieldupdate",
+          "knowledgePublish": "workflowknowledgepublish",
+          "task": "workflowtask",
+          "alert": "workflowalert",
+          "send": "workflowsend",
+          "outboundMessage": "workflowoutboundmessage",
+          "rule": "workflowrule"
         },
         "directories": {
-          "workflowFieldUpdates": "workflowfieldupdate",
-          "workflowTasks": "workflowtask",
-          "workflowAlerts": "workflowalert",
-          "workflowSends": "workflowsend",
-          "workflowOutboundMessages": "workflowoutboundmessage",
-          "workflowRules": "workflowrule"
+          "fieldUpdates": "workflowfieldupdate",
+          "knowledgePublishes": "workflowknowledgepublish",
+          "tasks": "workflowtask",
+          "alerts": "workflowalert",
+          "send": "workflowsend",
+          "outboundMessages": "workflowoutboundmessage",
+          "rules": "workflowrule"
         }
       }
     },
@@ -670,7 +674,8 @@
           "assignmentrule": {
             "id": "assignmentrule",
             "name": "AssignmentRule",
-            "directoryName": "assignmentRules",
+            "uniqueIdElement": "fullName",
+            "directoryName": "assignmentRule",
             "suffix": "assignmentRule"
           }
         },
@@ -678,7 +683,7 @@
           "assignmentRule": "assignmentrule"
         },
         "directories": {
-          "assignmentRules": "assignmentrule"
+          "assignmentRule": "assignmentrule"
         }
       }
     },
@@ -694,7 +699,8 @@
           "autoresponserule": {
             "id": "autoresponserule",
             "name": "AutoResponseRule",
-            "directoryName": "autoResponseRules",
+            "uniqueIdElement": "fullName",
+            "directoryName": "autoResponseRule",
             "suffix": "autoResponseRule"
           }
         },
@@ -702,7 +708,7 @@
           "autoResponseRule": "autoresponserule"
         },
         "directories": {
-          "autoResponseRules": "autoresponserule"
+          "autoResponseRule": "autoresponserule"
         }
       }
     },
@@ -718,7 +724,8 @@
           "escalationrule": {
             "id": "escalationrule",
             "name": "EscalationRule",
-            "directoryName": "escalationRules",
+            "uniqueIdElement": "fullName",
+            "directoryName": "escalationRule",
             "suffix": "escalationRule"
           }
         },
@@ -726,7 +733,7 @@
           "escalationRule": "escalationrule"
         },
         "directories": {
-          "escalationRules": "escalationrule"
+          "escalationRule": "escalationrule"
         }
       }
     },
@@ -929,6 +936,7 @@
           "matchingrule": {
             "id": "matchingrule",
             "name": "MatchingRule",
+            "uniqueIdElement": "fullName",
             "directoryName": "matchingRules",
             "suffix": "matchingRule"
           }
@@ -1004,6 +1012,7 @@
       "id": "wavetemplatebundle",
       "name": "WaveTemplateBundle",
       "directoryName": "waveTemplates",
+      "strictDirectoryName": true,
       "inFolder": false,
       "strategies": {
         "adapter": "bundle"
@@ -1164,7 +1173,9 @@
         },
         "directories": {
           "sharingOwnerRules": "sharingownerrule",
-          "sharingCriteriaRules": "sharingcriteriarule"
+          "sharingCriteriaRules": "sharingcriteriarule",
+          "sharingGuestRules": "sharingguestrule",
+          "sharingTerritoryRules": "sharingterritoryrule"
         }
       }
     },
@@ -1350,7 +1361,7 @@
           "managedtopic": {
             "id": "managedtopic",
             "name": "ManagedTopic",
-            "directoryName": "managedTopics",
+            "directoryName": "ManagedTopic",
             "suffix": "managedTopic"
           }
         },
@@ -1358,7 +1369,7 @@
           "managedTopic": "managedtopic"
         },
         "directories": {
-          "managedTopics": "managedtopic"
+          "ManagedTopic": "managedtopic"
         }
       }
     },
@@ -1471,6 +1482,7 @@
       "name": "AccessControlPolicy",
       "suffix": "policy",
       "directoryName": "accessControlPolicies",
+      "strictDirectoryName": true,
       "inFolder": false
     },
     "skill": {
@@ -1589,6 +1601,7 @@
       "name": "IntegrationHubSettings",
       "suffix": "settings",
       "directoryName": "integrationHub",
+      "strictDirectoryName": true,
       "inFolder": false
     },
     "orchestrationcontext": {
@@ -2182,7 +2195,7 @@
       "name": "ObjectHierarchyRelationship",
       "suffix": "settings",
       "directoryName": "ObjectHierarchyRelationship",
-      "strictDirectoryName": false
+      "strictDirectoryName": true
     },
     "salesagreementsettings": {
       "id": "salesagreementsettings",
@@ -2210,7 +2223,7 @@
       "name": "IndustriesManufacturingSettings",
       "suffix": "settings",
       "directoryName": "IndustriesManufacturingSettings",
-      "strictDirectoryName": false
+      "strictDirectoryName": true
     },
     "fieldservicemobileextension": {
       "id": "fieldservicemobileextension",
@@ -2224,7 +2237,7 @@
       "name": "DataSource",
       "suffix": "dataSource",
       "directoryName": "mktDataSources",
-      "strictDirectoryName": false
+      "strictDirectoryName": true
     },
     "datasourceobject": {
       "id": "datasourceobject",
@@ -2259,7 +2272,22 @@
       "name": "MktDataTranObject",
       "suffix": "mktDataTranObject",
       "directoryName": "mktDataTranObjects",
-      "strictDirectoryName": false
+      "children": {
+        "types": {
+          "mktdatatranfield": {
+            "id": "mktdatatranfield",
+            "name": "MktDataTranField",
+            "directoryName": "mktDataTranFields",
+            "suffix": "mktDataTranField"
+          }
+        },
+        "suffixes": {
+          "mktDataTranField": "mktdatatranfield"
+        },
+        "directories": {
+          "mktDataTranFields": "mktdatatranfield"
+        }
+      }
     },
     "fieldsrctrgtrelationship": {
       "id": "fieldsrctrgtrelationship",
@@ -2337,15 +2365,32 @@
       "suffix": "connectedSystem",
       "directoryName": "ConnectedSystem",
       "strictDirectoryName": false
+    },
+    "svccatalogcategory": {
+      "id": "svccatalogcategory",
+      "name": "SvcCatalogCategory",
+      "suffix": "category",
+      "directoryName": "svcCatalogCategories"
+    },
+    "svccatalogfulfillmentflow": {
+      "id": "svccatalogfulfillmentflow",
+      "name": "SvcCatalogFulfillmentFlow",
+      "suffix": "fulfillmentFlow",
+      "directoryName": "svcCatalogFulfillmentFlows"
+    },
+    "svccatalogitemdef": {
+      "id": "svccatalogitemdef",
+      "name": "SvcCatalogItemDef",
+      "suffix": "catalogItem",
+      "directoryName": "svcCatalogItems"
     }
   },
   "suffixes": {
-    "sites": "customsite",
     "icon": "icon",
     "businessProcessGroup": "businessprocessgroup",
     "model": "discoveryaimodel",
     "goal": "discoverygoal",
-    "functions": "functionreference",
+    "function": "functionreference",
     "participantRole": "participantrole",
     "gatewayProviderPaymentMethodType": "gatewayproviderpaymentmethodtype",
     "careProviderSearchConfig": "careprovidersearchconfig",
@@ -2358,7 +2403,7 @@
     "decisionTableDatasetLink": "decisiontabledatasetlink",
     "briefcaseDefinition": "briefcasedefinition",
     "batchProcessJobDefinition": "batchprocessjobdefinition",
-    "webstoretemplate": "webstoretemplate",
+    "webStoreTemplate": "webstoretemplate",
     "acctMgrTargetSetting": "acctmgrtargetsettings",
     "dataSourceObject": "datasourceobject",
     "externalDataConnector": "externaldataconnector",
@@ -2370,7 +2415,6 @@
     "installedPackage": "installedpackage",
     "labels": "customlabels",
     "navigationMenu": "navigationmenu",
-    "resource": "staticresource",
     "scf": "scontrol",
     "crt": "certificate",
     "messageChannel": "lightningmessagechannel",
@@ -2428,7 +2472,6 @@
     "homePageComponent": "homepagecomponent",
     "homePageLayout": "homepagelayout",
     "objectTranslation": "customobjecttranslation",
-    "fieldTranslation": "customfieldtranslation",
     "translation": "translations",
     "globalValueSetTranslation": "globalvaluesettranslation",
     "standardValueSetTranslation": "standardvaluesettranslation",
@@ -2532,7 +2575,6 @@
     "prompt": "prompt",
     "mlDomain": "mldomain",
     "bot": "bot",
-    "botVersion": "botversion",
     "animationRule": "animationrule",
     "deployment": "recordactiondeployment",
     "EmbeddedServiceFlowConfig": "embeddedserviceflowconfig",
@@ -2568,7 +2610,24 @@
     "timeSheetTemplate": "timesheettemplate",
     "accountRelationshipShareRule": "accountrelationshipsharerule",
     "IPAddressRange": "ipaddressrange",
-    "xml": "emailservicesfunction"
+    "xml": "emailservicesfunction",
+    "businessProcessFeedbackConfiguration": "businessprocessfeedbackconfiguration",
+    "dynamicTrigger": "dynamictrigger",
+    "salesAgreementSetting": "salesagreementsettings",
+    "accountForecastSetting": "accountforecastsettings",
+    "fieldServiceMobileExtension": "fieldservicemobileextension",
+    "dataStreamDefinition": "datastreamdefinition",
+    "ChannelObjectLinkingRule": "channelobjectlinkingrule",
+    "ConversationVendorInformation": "conversationvendorinfo",
+    "ConversationVendorFieldDefinition": "conversationvendorfielddef",
+    "schedulingRule": "schedulingrule",
+    "dataMappingSchema": "datamappingschema",
+    "dataMapping": "datamapping",
+    "federationDataMappingUsage": "federationdatamappingusage",
+    "connectedSystem": "connectedsystem",
+    "category": "svccatalogcategory",
+    "fulfillmentFlow": "svccatalogfulfillmentflow",
+    "catalogItem": "svccatalogitemdef"
   },
   "strictDirectoryNames": {
     "experiences": "experiencebundle",
@@ -2581,7 +2640,12 @@
     "objectTranslations": "customobjecttranslation",
     "staticresources": "staticresource",
     "sites": "customsite",
-    "restrictionRules": "restrictionrule"
+    "restrictionRules": "restrictionrule",
+    "accessControlPolicies": "accesscontrolpolicy",
+    "integrationHub": "integrationhubsettings",
+    "ObjectHierarchyRelationship": "objecthierarchyrelationship",
+    "IndustriesManufacturingSettings": "industriesmanufacturingsettings",
+    "mktDataSources": "datasource"
   },
   "childTypes": {
     "customlabel": "customlabels",
@@ -2608,7 +2672,14 @@
     "sharingownerrule": "sharingrules",
     "sharingcriteriarule": "sharingrules",
     "botversion": "bot",
-    "customfieldtranslation": "customobjecttranslation"
+    "customfieldtranslation": "customobjecttranslation",
+    "formsection": "form",
+    "workflowknowledgepublish": "workflow",
+    "sharingguestrule": "sharingrules",
+    "sharingterritoryrule": "sharingrules",
+    "managedtopic": "managedtopics",
+    "workskillroutingattribute": "workskillrouting",
+    "mktdatatranfield": "mktdatatranobject"
   },
   "apiVersion": "52.0"
 }
