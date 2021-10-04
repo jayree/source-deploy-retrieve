@@ -69,6 +69,7 @@ export {
 export {
   MetadataResolver,
   ManifestResolver,
+  TargetUsernameResolver,
   TreeContainer,
   NodeFSTreeContainer,
   VirtualTreeContainer,

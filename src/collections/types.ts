@@ -63,3 +63,14 @@ export interface FromManifestOptions extends OptionalTreeRegistryOptions {
    */
   forceAddWildcards?: boolean;
 }
+
+export interface FromTargetUsernameOptions extends OptionalTreeRegistryOptions {
+  /**
+   * targetUsername from connection
+   */
+  targetUsername: string;
+  /**
+   * apiVersion connection
+   */
+  apiVersion: string;
+}

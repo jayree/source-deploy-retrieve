@@ -6,6 +6,7 @@
  */
 export { MetadataResolver } from './metadataResolver';
 export { ManifestResolver } from './manifestResolver';
+export { TargetUsernameResolver } from './targetUsernameResolver';
 export {
   TreeContainer,
   NodeFSTreeContainer,

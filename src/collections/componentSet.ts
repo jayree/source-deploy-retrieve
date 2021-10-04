@@ -17,6 +17,7 @@ import {
   ManifestResolver,
   MetadataComponent,
   MetadataResolver,
+  TargetUsernameResolver,
   SourceComponent,
   TreeContainer,
 } from '../resolve';
@@ -24,6 +25,7 @@ import {
   DestructiveChangesType,
   FromManifestOptions,
   FromSourceOptions,
+  FromTargetUsernameOptions,
   PackageManifestObject,
   PackageTypeMembers,
 } from './types';
@@ -199,6 +201,41 @@ export class ComponentSet extends LazyCollection<MetadataComponent> {
       for (const component of components) {
         result.add(component);
       }
+    }
+
+    return result;
+  }
+
+  /**
+   * Resolve components from a targetUsername.
+   *
+   * @param targetUsername targetUsername from connection
+   * @returns Promise of a ComponentSet containing manifest components
+   */
+  public static async fromTargetUsername(targetUsername: string): Promise<ComponentSet>;
+  /**
+   * Resolve components from a targetUsername.
+   *
+   * @param options
+   * @returns Promise of a ComponentSet containing manifest components
+   */
+  public static async fromTargetUsername(options: FromTargetUsernameOptions): Promise<ComponentSet>;
+  public static async fromTargetUsername(
+    input: string | FromTargetUsernameOptions
+  ): Promise<ComponentSet> {
+    const targetUsername = typeof input === 'string' ? input : input.targetUsername;
+    const options = (typeof input === 'object' ? input : {}) as Partial<FromTargetUsernameOptions>;
+
+    const targetUsernameResolver = new TargetUsernameResolver(
+      targetUsername,
+      options.apiVersion,
+      options.registry
+    );
+    const manifest = await targetUsernameResolver.resolve();
+    const result = new ComponentSet([], options.registry);
+
+    for (const component of manifest.components) {
+      result.add(component);
     }
 
     return result;
