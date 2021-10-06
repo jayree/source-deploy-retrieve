@@ -4,6 +4,7 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+import { Connection } from '@salesforce/core';
 import { OptionalTreeRegistryOptions, XML_NS_KEY } from '../common';
 import { ComponentSet } from './componentSet';
 
@@ -64,13 +65,9 @@ export interface FromManifestOptions extends OptionalTreeRegistryOptions {
   forceAddWildcards?: boolean;
 }
 
-export interface FromTargetUsernameOptions extends OptionalTreeRegistryOptions {
+export interface FromConnectionOptions extends OptionalTreeRegistryOptions {
   /**
-   * targetUsername from connection
+   * connection to org
    */
-  targetUsername: string;
-  /**
-   * apiVersion connection
-   */
-  apiVersion: string;
+  connection: Connection;
 }

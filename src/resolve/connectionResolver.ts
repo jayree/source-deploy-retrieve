@@ -6,7 +6,7 @@
  */
 
 import { RegistryAccess, registry, MetadataType } from '../registry';
-import { AuthInfo, Connection, Logger } from '@salesforce/core';
+import { Connection, Logger } from '@salesforce/core';
 import { FileProperties, ListMetadataQuery } from 'jsforce';
 import { deepFreeze, normalizeToArray } from '../utils';
 import * as standardValueSetData from '../registry/standardvalueset.json';
@@ -14,48 +14,36 @@ import { ComponentLike } from '.';
 
 const stdValueSets = deepFreeze(standardValueSetData);
 
-export interface ResolveTargetUsernameResult {
+export interface ResolveConnectionResult {
   components: ComponentLike[];
-}
-
-export interface FilePropertiesLike {
-  fullName: string;
-  type: string;
-  namespacePrefix?: string;
-  manageableState?: string;
 }
 
 /**
  * Resolve MetadataComponents from a manifest file (package.xml)
  */
-export class TargetUsernameResolver {
+export class ConnectionResolver {
   protected logger: Logger;
-  private usernameOrConnection: string | Connection;
-  private apiVersion: string;
+  private connection: Connection;
   private registry: RegistryAccess;
 
-  constructor(
-    usernameOrConnection: string | Connection,
-    apiVersion: string,
-    registry = new RegistryAccess()
-  ) {
-    this.usernameOrConnection = usernameOrConnection;
-    this.apiVersion = apiVersion;
+  constructor(connection: Connection, registry = new RegistryAccess()) {
+    this.connection = connection;
     this.registry = registry;
     this.logger = Logger.childFromRoot(this.constructor.name);
   }
 
-  public async resolve(): Promise<ResolveTargetUsernameResult> {
-    await this.getConnection();
+  public async resolve(): Promise<ResolveConnectionResult> {
     const Aggregator: ComponentLike[] = [];
     const childrenPromises: Array<Promise<FileProperties[]>> = [];
     const componentTypes: Set<MetadataType> = new Set();
-    const componentPromises = Object.values(registry.types).map((type) => {
-      return this.listMembers({ type: type.name });
-    });
+
+    const componentPromises: Array<Promise<FileProperties[]>> = [];
+    for (const type of Object.values(registry.types)) {
+      componentPromises.push(this.listMembers({ type: type.name }));
+    }
     for await (const componentResult of componentPromises) {
+      Aggregator.push(...componentResult);
       for (const component of componentResult) {
-        Aggregator.push(component);
         const componentType = this.registry.getTypeByName(component.type.toLowerCase());
         componentTypes.add(componentType);
         const folderContentType = componentType.folderContentType;
@@ -78,21 +66,14 @@ export class TargetUsernameResolver {
         });
       }
     }
-    this.logger.debug('componentPromises finished');
 
     for await (const childrenResult of childrenPromises) {
-      for (const component of childrenResult) {
-        Aggregator.push(component);
-      }
+      Aggregator.push(...childrenResult);
     }
-    this.logger.debug('childrenPromises finished');
 
     const standardValueSetPromises = stdValueSets.fullNames.map(async (member) => {
       try {
-        if (!(this.usernameOrConnection instanceof Connection)) {
-          throw new Error('no connection');
-        }
-        const [standardValueSet] = ((await this.usernameOrConnection.tooling.query(
+        const [standardValueSet] = ((await this.connection.tooling.query(
           `SELECT MasterLabel, Metadata FROM StandardValueSet WHERE MasterLabel = '${member}'`
         )) as {
           records: Array<{
@@ -114,7 +95,6 @@ export class TargetUsernameResolver {
         Aggregator.push({ fullName: standardValueSetName, type: 'StandardValueSet' });
       }
     }
-    this.logger.debug('standardValueSetPromises finished');
 
     const components = Aggregator.sort((a, b) => {
       if (a.fullName < b.fullName) {
@@ -131,37 +111,16 @@ export class TargetUsernameResolver {
     };
   }
 
-  protected async getConnection(): Promise<Connection> {
-    if (typeof this.usernameOrConnection === 'string') {
-      this.usernameOrConnection = await Connection.create({
-        authInfo: await AuthInfo.create({ username: this.usernameOrConnection }),
-      });
-      if (this.apiVersion && this.apiVersion !== this.usernameOrConnection.version) {
-        this.usernameOrConnection.setApiVersion(this.apiVersion);
-        this.logger.debug(`Overriding apiVersion to: ${this.apiVersion}`);
-      }
-    }
-    return this.usernameOrConnection;
-  }
-
   private async listMembers(
     queries: ListMetadataQuery | ListMetadataQuery[],
     apiVersion?: string
   ): Promise<FileProperties[]> {
     let members: FileProperties[];
 
-    if (!(this.usernameOrConnection instanceof Connection)) {
-      throw new Error('no connection');
-    }
-
     try {
-      if (!apiVersion) {
-        apiVersion = this.usernameOrConnection.getApiVersion();
-      }
-      members = normalizeToArray(
-        await this.usernameOrConnection.metadata.list(queries, apiVersion)
-      );
+      members = normalizeToArray(await this.connection.metadata.list(queries, apiVersion));
     } catch (error) {
+      this.logger.error(error.message);
       members = [];
     }
     return members;

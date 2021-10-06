@@ -17,7 +17,7 @@ import {
   ManifestResolver,
   MetadataComponent,
   MetadataResolver,
-  TargetUsernameResolver,
+  ConnectionResolver,
   SourceComponent,
   TreeContainer,
 } from '../resolve';
@@ -25,13 +25,13 @@ import {
   DestructiveChangesType,
   FromManifestOptions,
   FromSourceOptions,
-  FromTargetUsernameOptions,
+  FromConnectionOptions,
   PackageManifestObject,
   PackageTypeMembers,
 } from './types';
 import { LazyCollection } from './lazyCollection';
 import { j2xParser } from 'fast-xml-parser';
-import { Logger } from '@salesforce/core';
+import { Connection, Logger } from '@salesforce/core';
 import { MetadataType, RegistryAccess } from '../registry';
 
 export type DeploySetOptions = Omit<MetadataApiDeployOptions, 'components'>;
@@ -207,31 +207,27 @@ export class ComponentSet extends LazyCollection<MetadataComponent> {
   }
 
   /**
-   * Resolve components from a targetUsername.
+   * Resolve components from an org connection.
    *
-   * @param targetUsername targetUsername from connection
+   * @param connection org connection
    * @returns Promise of a ComponentSet containing manifest components
    */
-  public static async fromTargetUsername(targetUsername: string): Promise<ComponentSet>;
+  public static async fromConnection(connection: Connection): Promise<ComponentSet>;
   /**
-   * Resolve components from a targetUsername.
+   * Resolve components from an org connection.
    *
    * @param options
    * @returns Promise of a ComponentSet containing manifest components
    */
-  public static async fromTargetUsername(options: FromTargetUsernameOptions): Promise<ComponentSet>;
-  public static async fromTargetUsername(
-    input: string | FromTargetUsernameOptions
+  public static async fromConnection(options: FromConnectionOptions): Promise<ComponentSet>;
+  public static async fromConnection(
+    input: Connection | FromConnectionOptions
   ): Promise<ComponentSet> {
-    const targetUsername = typeof input === 'string' ? input : input.targetUsername;
-    const options = (typeof input === 'object' ? input : {}) as Partial<FromTargetUsernameOptions>;
+    const connection = input instanceof Connection ? input : input.connection;
+    const options = (typeof input === 'object' ? input : {}) as Partial<FromConnectionOptions>;
 
-    const targetUsernameResolver = new TargetUsernameResolver(
-      targetUsername,
-      options.apiVersion,
-      options.registry
-    );
-    const manifest = await targetUsernameResolver.resolve();
+    const connectionResolver = new ConnectionResolver(connection, options.registry);
+    const manifest = await connectionResolver.resolve();
     const result = new ComponentSet([], options.registry);
 
     for (const component of manifest.components) {
