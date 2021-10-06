@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { RegistryAccess, registry } from '../registry';
+import { RegistryAccess, registry, MetadataType } from '../registry';
 import { AuthInfo, Connection, Logger } from '@salesforce/core';
 import { FileProperties, ListMetadataQuery } from 'jsforce';
 import { deepFreeze, normalizeToArray } from '../utils';
@@ -48,8 +48,8 @@ export class TargetUsernameResolver {
   public async resolve(): Promise<ResolveTargetUsernameResult> {
     await this.getConnection();
     const Aggregator: ComponentLike[] = [];
-    const folderPromises: Array<Promise<FileProperties[]>> = [];
     const childrenPromises: Array<Promise<FileProperties[]>> = [];
+    const componentTypes: Set<MetadataType> = new Set();
     const componentPromises = Object.values(registry.types).map((type) => {
       return this.listMembers({ type: type.name });
     });
@@ -57,15 +57,10 @@ export class TargetUsernameResolver {
       for (const component of componentResult) {
         Aggregator.push(component);
         const componentType = this.registry.getTypeByName(component.type.toLowerCase());
-        const childTypes = componentType.children?.types;
-        if (childTypes) {
-          Object.values(childTypes).map((childType) => {
-            childrenPromises.push(this.listMembers({ type: childType.name }));
-          });
-        }
+        componentTypes.add(componentType);
         const folderContentType = componentType.folderContentType;
         if (folderContentType) {
-          folderPromises.push(
+          childrenPromises.push(
             this.listMembers({
               type: this.registry.getTypeByName(componentType.folderContentType).name,
               folder: component.fullName,
@@ -74,13 +69,16 @@ export class TargetUsernameResolver {
         }
       }
     }
-    this.logger.debug('componentPromises finished');
-    for await (const folderResult of folderPromises) {
-      for (const component of folderResult) {
-        Aggregator.push(component);
+
+    for (const componentType of componentTypes) {
+      const childTypes = componentType.children?.types;
+      if (childTypes) {
+        Object.values(childTypes).map((childType) => {
+          childrenPromises.push(this.listMembers({ type: childType.name }));
+        });
       }
     }
-    this.logger.debug('folderPromises finished');
+    this.logger.debug('componentPromises finished');
 
     for await (const childrenResult of childrenPromises) {
       for (const component of childrenResult) {
