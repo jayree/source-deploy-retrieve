@@ -10,12 +10,12 @@ import { Connection, Logger } from '@salesforce/core';
 import { FileProperties, ListMetadataQuery } from 'jsforce';
 import { deepFreeze, normalizeToArray } from '../utils';
 import * as standardValueSetData from '../registry/standardvalueset.json';
-import { ComponentLike } from '.';
+import { MetadataComponent } from '.';
 
 const stdValueSets = deepFreeze(standardValueSetData);
 
 export interface ResolveConnectionResult {
-  components: ComponentLike[];
+  components: MetadataComponent[];
 }
 
 /**
@@ -33,7 +33,7 @@ export class ConnectionResolver {
   }
 
   public async resolve(): Promise<ResolveConnectionResult> {
-    const Aggregator: ComponentLike[] = [];
+    const Aggregator: MetadataComponent[] = [];
     const childrenPromises: Array<Promise<FileProperties[]>> = [];
     const componentTypes: Set<MetadataType> = new Set();
 
@@ -42,9 +42,13 @@ export class ConnectionResolver {
       componentPromises.push(this.listMembers({ type: type.name }));
     }
     for await (const componentResult of componentPromises) {
-      Aggregator.push(...componentResult);
       for (const component of componentResult) {
-        const componentType = this.registry.getTypeByName(component.type.toLowerCase());
+        Aggregator.push({
+          fullName: component.fullName,
+          type: this.registry.getTypeByName(component.type),
+        });
+
+        const componentType = this.registry.getTypeByName(component.type);
         componentTypes.add(componentType);
         const folderContentType = componentType.folderContentType;
         if (folderContentType) {
@@ -68,7 +72,12 @@ export class ConnectionResolver {
     }
 
     for await (const childrenResult of childrenPromises) {
-      Aggregator.push(...childrenResult);
+      for (const component of childrenResult) {
+        Aggregator.push({
+          fullName: component.fullName,
+          type: this.registry.getTypeByName(component.type),
+        });
+      }
     }
 
     const standardValueSetPromises = stdValueSets.fullNames.map(async (member) => {
@@ -78,7 +87,7 @@ export class ConnectionResolver {
         )) as {
           records: Array<{
             MasterLabel: string;
-            Metadata: { standardValue: [] };
+            Metadata: { standardValue: Record<string, unknown>[] };
           }>;
         }).records;
         if (standardValueSet.Metadata?.standardValue.length) {
@@ -90,20 +99,19 @@ export class ConnectionResolver {
       }
     });
 
-    for await (const standardValueSetName of standardValueSetPromises) {
-      if (standardValueSetName) {
-        Aggregator.push({ fullName: standardValueSetName, type: 'StandardValueSet' });
+    for await (const fullName of standardValueSetPromises) {
+      if (fullName) {
+        Aggregator.push({
+          fullName,
+          type: this.registry.getTypeByName('StandardValueSet'),
+        });
       }
     }
-
     const components = Aggregator.sort((a, b) => {
-      if (a.fullName < b.fullName) {
-        return -1;
+      if (a.type.name === b.type.name) {
+        return a.fullName.toLowerCase() > b.fullName.toLowerCase() ? 1 : -1;
       }
-      if (a.fullName > b.fullName) {
-        return 1;
-      }
-      return 0;
+      return a.type.name.toLowerCase() > b.type.name.toLowerCase() ? 1 : -1;
     });
 
     return {
