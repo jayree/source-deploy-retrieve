@@ -33,7 +33,7 @@ describe('ConnectionResolver', () => {
   });
 
   describe('resolve', () => {
-    it('parent child', async () => {
+    it('should resolve parent and child components', async () => {
       const metadataQueryStub = sandboxStub.stub(connection.metadata, 'list');
 
       metadataQueryStub.withArgs({ type: 'CustomObject' }).resolves([
@@ -111,7 +111,7 @@ describe('ConnectionResolver', () => {
       ];
       expect(result.components).to.deep.equal(expected);
     });
-    it('two different ', async () => {
+    it('should resolve components with different types', async () => {
       const metadataQueryStub = sandboxStub.stub(connection.metadata, 'list');
 
       metadataQueryStub.withArgs({ type: 'CustomLabels' }).resolves([
@@ -157,7 +157,7 @@ describe('ConnectionResolver', () => {
       ];
       expect(result.components).to.deep.equal(expected);
     });
-    it('folder', async () => {
+    it('should resolve components with folderContentType', async () => {
       const metadataQueryStub = sandboxStub.stub(connection.metadata, 'list');
 
       metadataQueryStub.withArgs({ type: 'EmailFolder' }).resolves([
@@ -206,16 +206,18 @@ describe('ConnectionResolver', () => {
       ];
       expect(result.components).to.deep.equal(expected);
     });
-    it('not existing metadtata', async () => {
+    it('should catch error if MetadataType is not supported', async () => {
       const metadataQueryStub = sandboxStub.stub(connection.metadata, 'list');
 
-      metadataQueryStub.withArgs({ type: 'EmailFolder' }).throws(new Error('whoops'));
+      metadataQueryStub
+        .withArgs({ type: 'EventType' })
+        .throws(new Error('INVALID_TYPE: Cannot use: EventType in this version'));
 
       const resolver = new ConnectionResolver(connection);
       const result = await resolver.resolve();
       expect(result.components).to.deep.equal([]);
     });
-    it('standardvalueset', async () => {
+    it('should resolve standardValueSet components from tooling api', async () => {
       sandboxStub.stub(connection.metadata, 'list');
 
       const mockToolingQuery = sandboxStub.stub(connection.tooling, 'query');
@@ -282,6 +284,94 @@ describe('ConnectionResolver', () => {
         {
           fullName: 'AccountOwnership',
           type: registry.types.standardvalueset,
+        },
+      ];
+      expect(result.components).to.deep.equal(expected);
+    });
+    it('should resolve no managed components', async () => {
+      const metadataQueryStub = sandboxStub.stub(connection.metadata, 'list');
+
+      metadataQueryStub.withArgs({ type: 'DashboardFolder' }).resolves([
+        {
+          createdById: '0051x000007uOWaAAM',
+          createdByName: 'Pooled Org Admin',
+          createdDate: '2021-09-25T11:26:17.000Z',
+          fileName: 'dashboards/SK__Knowledge_Dashboard',
+          fullName: 'SK__Knowledge_Dashboard',
+          id: '00l1x000000ZP6EAAW',
+          lastModifiedById: '0051x000007uOWaAAM',
+          lastModifiedByName: 'Pooled Org Admin',
+          lastModifiedDate: '2021-09-25T11:26:17.000Z',
+          manageableState: 'installed',
+          namespacePrefix: 'SK',
+          type: 'DashboardFolder',
+        },
+      ]);
+      metadataQueryStub.withArgs({ type: 'InstalledPackage' }).resolves([
+        {
+          createdById: '0051x000007uOWaAAM',
+          createdByName: 'Pooled Org Admin',
+          createdDate: '2021-09-25T11:26:17.000Z',
+          fileName: 'installedPackages/SK.installedPackage',
+          fullName: 'SK',
+          id: '0A31x0000003p64CAA',
+          lastModifiedById: '0051x000007uOWaAAM',
+          lastModifiedByName: 'Pooled Org Admin',
+          lastModifiedDate: '2021-09-25T11:26:17.000Z',
+          namespacePrefix: 'SK',
+          type: 'InstalledPackage',
+        },
+      ]);
+
+      const resolver = new ConnectionResolver(connection);
+      const result = await resolver.resolve();
+      expect(result.components).to.deep.equal([]);
+    });
+    it('should resolve managed components if excludeManaged is false', async () => {
+      const metadataQueryStub = sandboxStub.stub(connection.metadata, 'list');
+
+      metadataQueryStub.withArgs({ type: 'DashboardFolder' }).resolves([
+        {
+          createdById: '0051x000007uOWaAAM',
+          createdByName: 'Pooled Org Admin',
+          createdDate: '2021-09-25T11:26:17.000Z',
+          fileName: 'dashboards/SK__Knowledge_Dashboard',
+          fullName: 'SK__Knowledge_Dashboard',
+          id: '00l1x000000ZP6EAAW',
+          lastModifiedById: '0051x000007uOWaAAM',
+          lastModifiedByName: 'Pooled Org Admin',
+          lastModifiedDate: '2021-09-25T11:26:17.000Z',
+          manageableState: 'installed',
+          namespacePrefix: 'SK',
+          type: 'DashboardFolder',
+        },
+      ]);
+      metadataQueryStub.withArgs({ type: 'InstalledPackage' }).resolves([
+        {
+          createdById: '0051x000007uOWaAAM',
+          createdByName: 'Pooled Org Admin',
+          createdDate: '2021-09-25T11:26:17.000Z',
+          fileName: 'installedPackages/SK.installedPackage',
+          fullName: 'SK',
+          id: '0A31x0000003p64CAA',
+          lastModifiedById: '0051x000007uOWaAAM',
+          lastModifiedByName: 'Pooled Org Admin',
+          lastModifiedDate: '2021-09-25T11:26:17.000Z',
+          namespacePrefix: 'SK',
+          type: 'InstalledPackage',
+        },
+      ]);
+
+      const resolver = new ConnectionResolver(connection);
+      const result = await resolver.resolve(false);
+      const expected: MetadataComponent[] = [
+        {
+          fullName: 'SK__Knowledge_Dashboard',
+          type: registry.types.dashboardfolder,
+        },
+        {
+          fullName: 'SK',
+          type: registry.types.installedpackage,
         },
       ];
       expect(result.components).to.deep.equal(expected);

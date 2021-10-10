@@ -19,7 +19,7 @@ export interface ResolveConnectionResult {
 }
 
 /**
- * Resolve MetadataComponents from a manifest file (package.xml)
+ * Resolve MetadataComponents from an org connection
  */
 export class ConnectionResolver {
   protected logger: Logger;
@@ -32,8 +32,8 @@ export class ConnectionResolver {
     this.logger = Logger.childFromRoot(this.constructor.name);
   }
 
-  public async resolve(): Promise<ResolveConnectionResult> {
-    const Aggregator: MetadataComponent[] = [];
+  public async resolve(excludeManaged = true): Promise<ResolveConnectionResult> {
+    const Aggregator: Partial<FileProperties>[] = [];
     const childrenPromises: Array<Promise<FileProperties[]>> = [];
     const componentTypes: Set<MetadataType> = new Set();
 
@@ -42,12 +42,8 @@ export class ConnectionResolver {
       componentPromises.push(this.listMembers({ type: type.name }));
     }
     for await (const componentResult of componentPromises) {
+      Aggregator.push(...componentResult);
       for (const component of componentResult) {
-        Aggregator.push({
-          fullName: component.fullName,
-          type: this.registry.getTypeByName(component.type),
-        });
-
         const componentType = this.registry.getTypeByName(component.type);
         componentTypes.add(componentType);
         const folderContentType = componentType.folderContentType;
@@ -72,12 +68,7 @@ export class ConnectionResolver {
     }
 
     for await (const childrenResult of childrenPromises) {
-      for (const component of childrenResult) {
-        Aggregator.push({
-          fullName: component.fullName,
-          type: this.registry.getTypeByName(component.type),
-        });
-      }
+      Aggregator.push(...childrenResult);
     }
 
     const standardValueSetPromises = stdValueSets.fullNames.map(async (member) => {
@@ -103,16 +94,24 @@ export class ConnectionResolver {
       if (fullName) {
         Aggregator.push({
           fullName,
-          type: this.registry.getTypeByName('StandardValueSet'),
+          type: registry.types.standardvalueset.name,
         });
       }
     }
-    const components = Aggregator.sort((a, b) => {
-      if (a.type.name === b.type.name) {
-        return a.fullName.toLowerCase() > b.fullName.toLowerCase() ? 1 : -1;
-      }
-      return a.type.name.toLowerCase() > b.type.name.toLowerCase() ? 1 : -1;
-    });
+
+    const components = Aggregator.filter(
+      (component) =>
+        !(excludeManaged && component.namespacePrefix && component.manageableState !== 'unmanaged')
+    )
+      .map((component) => {
+        return { fullName: component.fullName, type: this.registry.getTypeByName(component.type) };
+      })
+      .sort((a, b) => {
+        if (a.type.name === b.type.name) {
+          return a.fullName.toLowerCase() > b.fullName.toLowerCase() ? 1 : -1;
+        }
+        return a.type.name.toLowerCase() > b.type.name.toLowerCase() ? 1 : -1;
+      });
 
     return {
       components,
